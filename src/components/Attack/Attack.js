@@ -20,8 +20,12 @@ const Attack = ({ button }) => {
   return <Wrapper>{Component}</Wrapper>;
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs((props) => ({
+  type: 'button',
+  tabIndex: '0',
+}))`
   display: inline-block;
+  padding: 5px;
 `;
 
 export default Attack;

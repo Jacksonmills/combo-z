@@ -8,8 +8,12 @@ const Dpad = ({ direction }) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs((props) => ({
+  type: 'button',
+  tabIndex: '0',
+}))`
   display: inline-block;
+  padding: 5px;
 `;
 
 const Image = styled.img`

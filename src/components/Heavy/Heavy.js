@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro';
-import { ATTACKS } from '../../constants';
+import { COLORS, ATTACKS } from '../../constants';
+
+import AttackLabel from '../AttackLabel';
 
 const Heavy = () => {
   return (
-    <Wrapper>
-      <StyledText>H</StyledText>
+    <Wrapper style={{ '--dark-color': '#d68108', '--light-color': '#ffff20' }}>
+      <AttackLabel>H</AttackLabel>
     </Wrapper>
   );
 };
@@ -13,22 +15,19 @@ const Wrapper = styled.div`
   font-size: ${26 / 16}rem;
   font-weight: 700;
   text-align: center;
-  color: white;
+  color: ${COLORS.white};
   width: ${ATTACKS.size};
   height: ${ATTACKS.size};
-  background: #d68108;
-  background: linear-gradient(345deg, #d68108 20%, #ffff20 70%);
-  box-shadow: 0px 0.5px 2px 0.5px #d68108, 0px -0.5px 2px 0.5px #ffff20,
-    0px 0px 0px 1px black;
-  border: 1px solid white;
+  background: var(--dark-color);
+  background: linear-gradient(
+    345deg,
+    var(--dark-color) 20%,
+    var(--light-color) 70%
+  );
+  box-shadow: 0px 0.5px 2px 0.5px var(--dark-color),
+    0px -0.5px 2px 0.5px var(--light-color), 0px 0px 0px 1px ${COLORS.black};
+  border: 1px solid ${COLORS.white};
   border-radius: 50px;
-`;
-
-const StyledText = styled.span`
-  position: relative;
-  top: -3px;
-  display: inline-block;
-  -webkit-text-stroke: 1px #d68108;
 `;
 
 export default Heavy;
