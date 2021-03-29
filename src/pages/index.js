@@ -43,6 +43,8 @@ export default function Home() {
               <>
                 <Dpad direction={2} />
                 <Attack button='M' />
+              </>,
+              <>
                 <Attack button='M' />
               </>,
               <>

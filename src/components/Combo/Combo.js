@@ -2,6 +2,7 @@ import React, { useContext, useLayoutContext, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import { COLORS } from '../../constants';
+import { PlusCircle } from 'react-feather';
 
 const Combo = (props) => {
   const notation = props.notation;
@@ -25,7 +26,9 @@ const Combo = (props) => {
       <p>{props.description}</p>
       <StepsWrapper>
         {listSteps}
-        <AddStep type='button'>+</AddStep>
+        <AddStep type='button' onClick={() => notation.push(<Step>TEST</Step>)}>
+          <PlusCircle />
+        </AddStep>
       </StepsWrapper>
     </Wrapper>
   );
@@ -67,15 +70,27 @@ const Difficulty = styled.span`
 `;
 
 const AddStep = styled.button`
-  display: inline-block;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: ${48 / 16}rem;
   height: ${48 / 16}rem;
-  font-size: ${26 / 16}rem;
-  font-weight: 900;
   align-self: center;
+  color: ${COLORS.gray[700]};
+  cursor: pointer;
   border: none;
   border-radius: 50px;
+  transition: color 100ms ease;
+
+  &:hover {
+    color: ${COLORS.black};
+  }
+
+  svg {
+    width: ${32 / 16}rem;
+    height: ${32 / 16}rem;
+    stroke: currentColor;
+  }
 `;
 
 const StepsWrapper = styled.ul`
