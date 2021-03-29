@@ -90,8 +90,8 @@ const Step = styled.li`
   align-items: center;
   justify-content: center;
   flex: 0;
-  background: hsl(0, 0%, 70%);
-  background: linear-gradient(315deg, hsl(0, 0%, 70%) 0%, hsl(0, 0%, 90%) 100%);
+  background: hsl(0, 0%, 80%);
+  background: linear-gradient(315deg, hsl(0, 0%, 80%) 0%, hsl(0, 0%, 90%) 100%);
   border-radius: 50px;
   padding: 5px;
 `;

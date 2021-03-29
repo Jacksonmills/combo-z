@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 import Light from '../Light';
 import Medium from '../Medium';
-import Heavy from '../Heavy';
+import Heavy from './Heavy';
 import Special from '../Special';
 import Assist from '../Assist';
 

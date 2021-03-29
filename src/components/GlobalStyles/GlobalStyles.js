@@ -45,6 +45,9 @@ const GlobalStyles = createGlobalStyle`
     border-spacing: 0;
   }
   /* GLOBAL */
+  html, body, #__next {
+    height: 100%;
+  }
   *,
   *:before,
   *:after {
@@ -56,11 +59,6 @@ const GlobalStyles = createGlobalStyle`
   }
   #__next {
     isolation: isolate;
-  }
-  html, body, #__next {
-    height: 100%;
-    background: hsl(0, 55%, 47%);
-    background: linear-gradient(315deg, hsl(0, 55%, 47%) 0%, hsl(52, 100%, 49%) 100%);
   }
 `;
 
