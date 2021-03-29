@@ -5,7 +5,13 @@ import AttackLabel from '../AttackLabel';
 
 const Heavy = () => {
   return (
-    <Wrapper style={{ '--dark-color': '#d68108', '--light-color': '#ffff20' }}>
+    <Wrapper
+      style={{
+        '--darker-color': '#633b04',
+        '--dark-color': '#d68108',
+        '--light-color': '#ffff20',
+      }}
+    >
       <AttackLabel>H</AttackLabel>
     </Wrapper>
   );
@@ -13,7 +19,7 @@ const Heavy = () => {
 
 const Wrapper = styled.div`
   font-size: ${26 / 16}rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: ${COLORS.white};
   width: ${ATTACKS.size};

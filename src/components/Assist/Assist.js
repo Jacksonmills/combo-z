@@ -3,22 +3,21 @@ import { COLORS, ATTACKS } from '../../constants';
 
 import AttackLabel from '../AttackLabel';
 
-const Special = () => {
+const Assist = ({ assist }) => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#460909',
-        '--dark-color': '#c91818',
-        '--light-color': '#f97777',
+        '--darker-color': '#4d1100',
+        '--dark-color': '#f83400',
+        '--light-color': '#f8b211',
       }}
     >
-      <AttackLabel>S</AttackLabel>
+      <AttackLabel>A{assist === 1 ? '1' : '2'}</AttackLabel>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  font-size: ${26 / 16}rem;
   font-weight: 500;
   text-align: center;
   color: ${COLORS.white};
@@ -36,4 +35,4 @@ const Wrapper = styled.div`
   border-radius: 50px;
 `;
 
-export default Special;
+export default Assist;

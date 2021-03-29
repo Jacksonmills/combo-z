@@ -4,17 +4,20 @@ import Light from '../Light';
 import Medium from '../Medium';
 import Heavy from '../Heavy';
 import Special from '../Special';
+import Assist from '../Assist';
 
-const Attack = ({ button }) => {
+const Attack = ({ button, ...delegated }) => {
   let Component;
-  if (button === 'light') {
+  if (button === 'L') {
     Component = <Light />;
-  } else if (button === 'medium') {
+  } else if (button === 'M') {
     Component = <Medium />;
-  } else if (button === 'heavy') {
+  } else if (button === 'H') {
     Component = <Heavy />;
-  } else if (button === 'special') {
+  } else if (button === 'S') {
     Component = <Special />;
+  } else if (button === 'A') {
+    Component = <Assist {...delegated} />;
   }
 
   return <Wrapper>{Component}</Wrapper>;

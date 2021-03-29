@@ -5,7 +5,13 @@ import { COLORS, ATTACKS } from '../../constants';
 
 const Light = () => {
   return (
-    <Wrapper style={{ '--dark-color': '#114075', '--light-color': '#37ffff' }}>
+    <Wrapper
+      style={{
+        '--darker-color': '#0a2544',
+        '--dark-color': '#114075',
+        '--light-color': '#37ffff',
+      }}
+    >
       <AttackLabel>L</AttackLabel>
     </Wrapper>
   );
@@ -13,7 +19,7 @@ const Light = () => {
 
 const Wrapper = styled.div`
   font-size: ${26 / 16}rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: ${COLORS.white};
   width: ${ATTACKS.size};

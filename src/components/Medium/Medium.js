@@ -5,7 +5,13 @@ import AttackLabel from '../AttackLabel';
 
 const Medium = () => {
   return (
-    <Wrapper style={{ '--dark-color': '#00642a', '--light-color': '#05fe0b' }}>
+    <Wrapper
+      style={{
+        '--darker-color': '#003115',
+        '--dark-color': '#00642a',
+        '--light-color': '#05fe0b',
+      }}
+    >
       <AttackLabel>M</AttackLabel>
     </Wrapper>
   );
@@ -13,7 +19,7 @@ const Medium = () => {
 
 const Wrapper = styled.div`
   font-size: ${26 / 16}rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: ${COLORS.white};
   width: ${ATTACKS.size};

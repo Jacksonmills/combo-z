@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro';
 
 const Dpad = ({ direction }) => {
+  const src = `/img/dpad/${direction}.png`;
   return (
     <Wrapper>
-      {direction === 'down' ? <Image src='/img/dpad/down.webp' /> : 'up'}
+      <Image src={src} />
     </Wrapper>
   );
 };
@@ -20,6 +21,7 @@ const Image = styled.img`
   display: block;
   width: ${36 / 16}rem;
   height: auto;
+  user-select: none;
 `;
 
 export default Dpad;

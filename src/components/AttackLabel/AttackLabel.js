@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 
 export default styled.span`
+  font-size: ${24 / 16}rem;
   position: relative;
   top: -3px;
   display: inline-block;
-  -webkit-text-stroke: 1px var(--dark-color);
-  filter: drop-shadow(0 0 2px var(--light-color));
+  -webkit-text-stroke: 1px var(--darker-color);
   pointer-events: none;
   user-select: none;
 `;
