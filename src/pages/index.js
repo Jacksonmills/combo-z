@@ -38,6 +38,7 @@ export default function Home() {
               <>
                 <Attack button='L' />
                 <Attack button='L' />
+                <Attack button='A1' />
               </>,
               <>
                 <Dpad direction={2} />

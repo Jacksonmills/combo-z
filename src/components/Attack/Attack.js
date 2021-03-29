@@ -1,26 +1,13 @@
 import styled from 'styled-components/macro';
 
-import Light from '../Light';
-import Medium from '../Medium';
-import Heavy from './Heavy';
-import Special from '../Special';
-import Assist from '../Assist';
+const Attack = ({ button }) => {
+  const src = `/img/button/${button}.png`;
 
-const Attack = ({ button, ...delegated }) => {
-  let Component;
-  if (button === 'L') {
-    Component = <Light />;
-  } else if (button === 'M') {
-    Component = <Medium />;
-  } else if (button === 'H') {
-    Component = <Heavy />;
-  } else if (button === 'S') {
-    Component = <Special />;
-  } else if (button === 'A') {
-    Component = <Assist {...delegated} />;
-  }
-
-  return <Wrapper>{Component}</Wrapper>;
+  return (
+    <Wrapper>
+      <Image src={src} />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div.attrs((props) => ({
@@ -29,6 +16,13 @@ const Wrapper = styled.div.attrs((props) => ({
 }))`
   display: inline-block;
   padding: 5px;
+`;
+
+const Image = styled.img`
+  display: block;
+  width: ${36 / 16}rem;
+  height: auto;
+  user-select: none;
 `;
 
 export default Attack;

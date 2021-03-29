@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
 
-const FollowUp = ({ direction }) => {
+const FollowUp = () => {
   return (
     <Wrapper>
-      <Image src='/img/input/follow_up.png' />
+      <Image src='/img/misc/follow_up.png' />
     </Wrapper>
   );
 };
