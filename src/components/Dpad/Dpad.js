@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro';
 
+import InputImg from '../InputImg';
+
 const Dpad = ({ direction }) => {
   const src = `/img/dpad/${direction}.png`;
   return (
     <Wrapper>
-      <Image src={src} />
+      <InputImg src={src} />
     </Wrapper>
   );
 };
@@ -15,13 +17,6 @@ const Wrapper = styled.div.attrs((props) => ({
 }))`
   display: inline-block;
   padding: 5px;
-`;
-
-const Image = styled.img`
-  display: block;
-  width: ${36 / 16}rem;
-  height: auto;
-  user-select: none;
 `;
 
 export default Dpad;

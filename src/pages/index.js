@@ -8,6 +8,7 @@ import Combo from '../components/Combo';
 import Dpad from '../components/Dpad';
 import Attack from '../components/Attack';
 import FollowUp from '../components/FollowUp';
+import SuperDash from '../components/SuperDash';
 
 export default function Home() {
   return (
@@ -141,7 +142,7 @@ export default function Home() {
                 <Attack button='S' />
               </>,
               <>
-                <p>SD</p>
+                <SuperDash />
               </>,
               <>
                 <p>j.</p>
@@ -230,11 +231,7 @@ export default function Home() {
 const Wrapper = styled.div`
   min-height: 100%;
   background: hsl(0, 55%, 47%);
-  background: linear-gradient(
-    335deg,
-    hsl(0, 55%, 47%) 0%,
-    hsl(52, 100%, 49%) 100%
-  );
+  background: linear-gradient(335deg, hsl(0, 55%, 47%) 0%, hsl(52, 100%, 49%) 100%);
   background-repeat: no-repeat;
   background-size: cover;
 `;

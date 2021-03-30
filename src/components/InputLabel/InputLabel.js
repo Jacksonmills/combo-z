@@ -5,7 +5,7 @@ export default styled.span`
   position: relative;
   top: -3px;
   display: inline-block;
-  -webkit-text-stroke: 1px var(--darker-color);
+  filter: drop-shadow(1px 1px 0px black);
   pointer-events: none;
   user-select: none;
 `;

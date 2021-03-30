@@ -3,21 +3,24 @@ import { COLORS, ATTACKS } from '../../constants';
 
 import InputLabel from '../InputLabel';
 
-const Special = () => {
+const SuperDash = () => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#460909',
-        '--dark-color': '#c91818',
-        '--light-color': '#f97777',
+        '--darker-color': '#320380',
+        '--dark-color': '#5b05eb',
+        '--light-color': '#b358ff',
       }}
     >
-      <InputLabel>S</InputLabel>
+      <InputLabel>SD</InputLabel>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs((props) => ({
+  type: 'button',
+  tabIndex: '0',
+}))`
   font-size: ${26 / 16}rem;
   font-weight: 500;
   text-align: center;
@@ -32,4 +35,4 @@ const Wrapper = styled.div`
   border-radius: 50px;
 `;
 
-export default Special;
+export default SuperDash;

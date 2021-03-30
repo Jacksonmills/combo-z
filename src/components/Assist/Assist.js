@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { COLORS, ATTACKS } from '../../constants';
 
-import AttackLabel from '../AttackLabel';
+import InputLabel from '../InputLabel';
 
 const Assist = ({ assist }) => {
   return (
@@ -12,7 +12,7 @@ const Assist = ({ assist }) => {
         '--light-color': '#f8b211',
       }}
     >
-      <AttackLabel>A{assist === 1 ? '1' : '2'}</AttackLabel>
+      <InputLabel>A{assist === 1 ? '1' : '2'}</InputLabel>
     </Wrapper>
   );
 };
@@ -24,13 +24,9 @@ const Wrapper = styled.div`
   width: ${ATTACKS.size};
   height: ${ATTACKS.size};
   background: var(--dark-color);
-  background: linear-gradient(
-    345deg,
-    var(--dark-color) 20%,
-    var(--light-color) 70%
-  );
-  box-shadow: 0px 0.5px 2px 0.5px var(--dark-color),
-    0px -0.5px 2px 0.5px var(--light-color), 0px 0px 0px 1px ${COLORS.black};
+  background: linear-gradient(345deg, var(--dark-color) 20%, var(--light-color) 70%);
+  box-shadow: 0px 0.5px 2px 0.5px var(--dark-color), 0px -0.5px 2px 0.5px var(--light-color),
+    0px 0px 0px 1px ${COLORS.black};
   border: 1px solid ${COLORS.white};
   border-radius: 50px;
 `;
