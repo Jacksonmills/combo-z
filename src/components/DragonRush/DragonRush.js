@@ -3,17 +3,17 @@ import { COLORS, ATTACKS } from '../../constants';
 
 import InputLabel from '../InputLabel';
 
-const SuperDash = () => {
+const DragonRush = () => {
   return (
     <Wrapper>
       <Theme
         style={{
-          '--darker-color': '#1c0231',
-          '--dark-color': '#8a0574',
-          '--light-color': '#ff75ca',
+          '--darker-color': '#003624',
+          '--dark-color': '#0a684c',
+          '--light-color': '#57ddb5',
         }}
       >
-        <InputLabel>SD</InputLabel>
+        <InputLabel>DR</InputLabel>
       </Theme>
     </Wrapper>
   );
@@ -51,4 +51,4 @@ const Theme = styled.div`
   border-radius: 50px;
 `;
 
-export default SuperDash;
+export default DragonRush;

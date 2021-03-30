@@ -14,5 +14,5 @@ export const COLORS = {
 };
 
 export const ATTACKS = {
-  size: `${36 / 16}rem`,
+  size: `${32 / 16}rem`,
 };

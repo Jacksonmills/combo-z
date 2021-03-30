@@ -9,6 +9,8 @@ import Dpad from '../components/Dpad';
 import Attack from '../components/Attack';
 import FollowUp from '../components/FollowUp';
 import SuperDash from '../components/SuperDash';
+import DragonRush from '../components/DragonRush';
+import Modifier from '../components/Modifier';
 
 export default function Home() {
   return (
@@ -142,15 +144,18 @@ export default function Home() {
                 <Attack button='S' />
               </>,
               <>
+                <Attack button='S' />
                 <SuperDash />
+                <DragonRush />
+                <Dpad direction={5} />
               </>,
               <>
-                <p>j.</p>
+                <Modifier type='j' />
                 <Dpad direction={2} />
                 <Attack button='H' />
               </>,
               <>
-                <p>land</p>
+                <Modifier type='land' />
                 <Dpad direction={6} />
                 <Attack button='H' />
               </>,
@@ -163,23 +168,25 @@ export default function Home() {
                 <Attack button='S' />
               </>,
               <>
-                <p>SD</p>
+                <SuperDash />
               </>,
               <>
-                <p>j.</p>
+                <Modifier type='j' />
                 <Attack button='M' />
                 <Attack button='L' />
               </>,
               <>
-                <p>jc.</p>
+                <Modifier type='jc' />
                 <Attack button='L' />
+                <Modifier type='delay' />
                 <Attack button='L' />
                 <Dpad direction={2} />
+                <Modifier type='vanish' />
                 <Attack button='H' />
                 <Attack button='S' />
               </>,
               <>
-                <p>j.</p>
+                <Modifier type='j' />
                 <Dpad direction={214} />
                 <Attack button='M' />
                 <FollowUp />
@@ -231,7 +238,11 @@ export default function Home() {
 const Wrapper = styled.div`
   min-height: 100%;
   background: hsl(0, 55%, 47%);
-  background: linear-gradient(335deg, hsl(0, 55%, 47%) 0%, hsl(52, 100%, 49%) 100%);
+  background: linear-gradient(
+    335deg,
+    hsl(0, 55%, 47%) 0%,
+    hsl(52, 100%, 49%) 100%
+  );
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -245,11 +256,4 @@ const ComboWrapper = styled.div.attrs((props) => ({
   place-content: center;
   padding-top: 20px;
   padding-bottom: 20px;
-`;
-
-const Delay = styled.span`
-  color: #ffffff;
-  background: rgb(49, 21, 41);
-  border-radius: 8px;
-  padding: 2px 6px 4px;
 `;

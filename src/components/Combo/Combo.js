@@ -1,7 +1,7 @@
 import React, { useContext, useLayoutContext, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS } from '../../constants';
+import { COLORS, ATTACKS } from '../../constants';
 import { Edit } from 'react-feather';
 
 const Combo = (props) => {
@@ -105,7 +105,7 @@ const Step = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0;
+  flex: 0 0 56px;
   background: hsl(0, 0%, 80%);
   background: linear-gradient(315deg, hsl(0, 0%, 80%) 0%, hsl(0, 0%, 90%) 100%);
   border-radius: 50px;
