@@ -2,7 +2,7 @@ import React, { useContext, useLayoutContext, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import { COLORS } from '../../constants';
-import { PlusCircle } from 'react-feather';
+import { Edit } from 'react-feather';
 
 const Combo = (props) => {
   const notation = props.notation;
@@ -27,7 +27,7 @@ const Combo = (props) => {
       <StepsWrapper>
         {listSteps}
         <AddStep type='button' onClick={() => notation.push(<Step>TEST</Step>)}>
-          <PlusCircle />
+          <Edit />
         </AddStep>
       </StepsWrapper>
     </Wrapper>
@@ -73,22 +73,23 @@ const AddStep = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${48 / 16}rem;
-  height: ${48 / 16}rem;
+  width: ${36 / 16}rem;
+  height: ${36 / 16}rem;
   align-self: center;
-  color: ${COLORS.gray[700]};
+  background-color: ${COLORS.gray[300]};
+  color: ${COLORS.gray[900]};
   cursor: pointer;
   border: none;
-  border-radius: 50px;
-  transition: color 100ms ease;
+  border-radius: 10px;
+  transition: background-color 100ms ease;
 
   &:hover {
-    color: ${COLORS.black};
+    background-color: ${COLORS.gray[400]};
   }
 
   svg {
-    width: ${32 / 16}rem;
-    height: ${32 / 16}rem;
+    width: ${24 / 16}rem;
+    height: auto;
     stroke: currentColor;
   }
 `;
