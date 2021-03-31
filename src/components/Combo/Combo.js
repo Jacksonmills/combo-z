@@ -7,10 +7,10 @@ import { Edit } from 'react-feather';
 const Combo = (props) => {
   const notation = props.notation;
   const listSteps = notation.map((step, index) => (
-    <>
-      <Step key={index}>{step}</Step>
+    <div key={index}>
+      <Step>{step}</Step>
       {/* {notation.length - 1 === index ? <button>+</button> : null} */}
-    </>
+    </div>
   ));
 
   return (
@@ -80,7 +80,7 @@ const AddStep = styled.button`
   color: ${COLORS.gray[900]};
   cursor: pointer;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: background-color 100ms ease;
 
   &:hover {
@@ -107,8 +107,14 @@ const Step = styled.li`
   justify-content: center;
   flex: 0 0 56px;
   background: hsl(0, 0%, 80%);
-  background: linear-gradient(315deg, hsl(0, 0%, 80%) 0%, hsl(0, 0%, 90%) 100%);
-  border-radius: 50px;
+  background: linear-gradient(
+    -90deg,
+    hsl(0, 0%, 80%) 0%,
+    hsl(0, 0%, 100%) 100%
+  );
+  border-radius: 12px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   padding: 5px;
 `;
 

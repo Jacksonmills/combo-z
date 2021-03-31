@@ -11,6 +11,7 @@ import FollowUp from '../components/FollowUp';
 import SuperDash from '../components/SuperDash';
 import DragonRush from '../components/DragonRush';
 import Modifier from '../components/Modifier';
+import Loop from '../components/Loop';
 
 export default function Home() {
   return (
@@ -103,12 +104,13 @@ export default function Home() {
                 <Attack button='H' />
                 <FollowUp />
                 <Attack button='S' />
-                x3
+                <Loop>x3</Loop>
               </>,
               <>
                 <Dpad direction={5} />
                 <Attack button='L' />
                 <Attack button='L' />
+                <Modifier reverse={true}>(3)</Modifier>
                 <Attack button='L' />
               </>,
               <>
@@ -150,12 +152,12 @@ export default function Home() {
                 <Dpad direction={5} />
               </>,
               <>
-                <Modifier type='j' />
+                <Modifier>j.</Modifier>
                 <Dpad direction={2} />
                 <Attack button='H' />
               </>,
               <>
-                <Modifier type='land' />
+                <Modifier>land</Modifier>
                 <Dpad direction={6} />
                 <Attack button='H' />
               </>,
@@ -171,22 +173,22 @@ export default function Home() {
                 <SuperDash />
               </>,
               <>
-                <Modifier type='j' />
+                <Modifier>j.</Modifier>
                 <Attack button='M' />
                 <Attack button='L' />
               </>,
               <>
-                <Modifier type='jc' />
+                <Modifier>jc.</Modifier>
                 <Attack button='L' />
-                <Modifier type='delay' />
+                <Modifier>delay</Modifier>
                 <Attack button='L' />
                 <Dpad direction={2} />
-                <Modifier type='vanish' />
+                <Modifier>vanish</Modifier>
                 <Attack button='H' />
                 <Attack button='S' />
               </>,
               <>
-                <Modifier type='j' />
+                <Modifier>j.</Modifier>
                 <Dpad direction={214} />
                 <Attack button='M' />
                 <FollowUp />

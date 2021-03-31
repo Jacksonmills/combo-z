@@ -27,6 +27,7 @@ const Wrapper = styled.div.attrs((props) => ({
   padding: 5px;
   width: 46px;
   height: 46px;
+  z-index: 2;
 `;
 
 const Theme = styled.div`

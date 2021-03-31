@@ -17,6 +17,7 @@ const Wrapper = styled.div.attrs((props) => ({
 }))`
   display: inline-block;
   padding: 5px;
+  z-index: 2;
 `;
 
 export default Dpad;
