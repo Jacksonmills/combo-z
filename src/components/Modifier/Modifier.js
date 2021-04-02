@@ -1,4 +1,3 @@
-import { Copy } from 'react-feather';
 import styled from 'styled-components/macro';
 
 import { COLORS } from '../../constants';
@@ -31,7 +30,7 @@ const TextWrapper = styled.span`
   background: #63ffc0;
   background: linear-gradient(0deg, #63ffc0 0%, white 80%);
   border: 0.5px solid ${COLORS.white};
-  box-shadow: 0 0 2px 1.6px black;
+  box-shadow: 0 0 0 1.2px black, 0 0 2px 1.4px #6d6d6d;
   min-width: 20px;
 
   padding: ${(props) =>

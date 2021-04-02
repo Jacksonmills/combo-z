@@ -1,16 +1,12 @@
-import React, { useContext, useLayoutContext, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, ATTACKS } from '../../constants';
+import { COLORS } from '../../constants';
 import { Edit } from 'react-feather';
 
 const Combo = (props) => {
   const notation = props.notation;
   const listSteps = notation.map((step, index) => (
-    <div key={index}>
-      <Step>{step}</Step>
-      {/* {notation.length - 1 === index ? <button>+</button> : null} */}
-    </div>
+    <div key={index}>{step}</div>
   ));
 
   return (
@@ -26,7 +22,10 @@ const Combo = (props) => {
       <p>{props.description}</p>
       <StepsWrapper>
         {listSteps}
-        <AddStep type='button' onClick={() => notation.push(<Step>TEST</Step>)}>
+        <AddStep
+          type='button'
+          onClick={() => notation.push(<ComboStep>TEST</ComboStep>)}
+        >
           <Edit />
         </AddStep>
       </StepsWrapper>
@@ -80,7 +79,7 @@ const AddStep = styled.button`
   color: ${COLORS.gray[900]};
   cursor: pointer;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   transition: background-color 100ms ease;
 
   &:hover {
@@ -99,23 +98,6 @@ const StepsWrapper = styled.ul`
   flex-wrap: wrap;
   grid-gap: 8px;
   margin-top: 10px;
-`;
-
-const Step = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 56px;
-  background: hsl(0, 0%, 80%);
-  background: linear-gradient(
-    -90deg,
-    hsl(0, 0%, 80%) 0%,
-    hsl(0, 0%, 100%) 100%
-  );
-  border-radius: 12px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 5px;
 `;
 
 export default Combo;

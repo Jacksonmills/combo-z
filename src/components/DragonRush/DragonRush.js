@@ -8,9 +8,9 @@ const DragonRush = () => {
     <Wrapper>
       <Theme
         style={{
-          '--darker-color': '#003624',
-          '--dark-color': '#0a684c',
-          '--light-color': '#57ddb5',
+          '--darker-color': '#00362f',
+          '--dark-color': '#0a6858',
+          '--light-color': '#daff61',
         }}
       >
         <InputLabel>DR</InputLabel>
@@ -47,8 +47,9 @@ const Theme = styled.div`
     var(--light-color) 70%
   );
   border: 0.5px solid ${COLORS.offblack};
-  box-shadow: 0 0 0 1.5px #e0e0e0, 0 0 0 2.2px ${COLORS.offblack},
-    inset 0 0 2px 0.8px var(--dark-color);
+  box-shadow: 0 0 0 1.25px #e0e0e0, 0 0 0 2px ${COLORS.offblack},
+    inset 0 0 0px 0.8px var(--dark-color),
+    inset 0 0 1px 1.2px var(--light-color);
   border-radius: 50px;
 `;
 

@@ -1,9 +1,16 @@
 import styled from 'styled-components/macro';
 
+import Image from 'next/image';
+
 const FollowUp = () => {
   return (
     <Wrapper>
-      <Image src='/img/misc/follow_up.png' />
+      <Image
+        src='/img/misc/follow_up.png'
+        width={36}
+        height={26}
+        layout='fixed'
+      />
     </Wrapper>
   );
 };
@@ -12,15 +19,8 @@ const Wrapper = styled.div.attrs((props) => ({
   type: 'button',
   tabIndex: '0',
 }))`
-  display: inline-block;
+  display: flex;
   padding: 5px;
-`;
-
-const Image = styled.img`
-  display: block;
-  width: ${36 / 16}rem;
-  height: auto;
-  user-select: none;
 `;
 
 export default FollowUp;

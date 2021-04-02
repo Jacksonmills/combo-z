@@ -12,6 +12,7 @@ import SuperDash from '../components/SuperDash';
 import DragonRush from '../components/DragonRush';
 import Modifier from '../components/Modifier';
 import Loop from '../components/Loop';
+import ComboStep from '../components/ComboStep';
 
 export default function Home() {
   return (
@@ -39,35 +40,64 @@ export default function Home() {
             difficulty='Very easy'
             description='Standard Sayian BnB, the combo you will be using most often.'
             notation={[
-              <>
+              <ComboStep sparking={true}>
+                <Modifier>IAD</Modifier>
+                <Attack button='H' />
+              </ComboStep>,
+              <ComboStep sparking={true}>
                 <Attack button='L' />
                 <Attack button='L' />
-                <Attack button='A1' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep sparking={true}>
                 <Dpad direction={2} />
                 <Attack button='M' />
-              </>,
-              <>
                 <Attack button='M' />
-              </>,
-              <>
-                <Dpad direction={5} />
+              </ComboStep>,
+              <ComboStep>
+                <Modifier>jc.</Modifier>
+                <Attack button='L' />
+                <Attack button='M' />
+                <Attack button='L' />
+              </ComboStep>,
+              <ComboStep>
+                <Dpad direction={2} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
+                <SuperDash />
+              </ComboStep>,
+              <ComboStep>
                 <Attack button='L' />
+                <Attack button='M' />
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
+                <Dpad direction={2} />
+                <Attack button='H' />
+              </ComboStep>,
+              <ComboStep>
+                <Modifier>jc.</Modifier>
+                <Attack button='L' />
+                <Attack button='M' />
+                <Attack button='L' />
+              </ComboStep>,
+              <ComboStep>
                 <Attack button='S' />
-                <Attack button='H' />
-              </>,
-              <>
                 <Dpad direction={236} />
+                <Attack button='M' />
+              </ComboStep>,
+              <ComboStep>
+                <Attack button='A1' />
+              </ComboStep>,
+              <ComboStep>
+                <Modifier>delay</Modifier>
+                <DragonRush />
+              </ComboStep>,
+              <ComboStep>
+                <Dpad direction={214} />
                 <Attack button='H' />
                 <Attack button='S' />
-              </>,
+              </ComboStep>,
             ]}
           />
           <Combo
@@ -78,15 +108,15 @@ export default function Home() {
             description="Stance cancel loops. Easily Hit's best option in corner if you have the resources to spend, and does massive damage. The 236L~M at the end can be replaced with any ideal follow up. If scaled, do only two loops."
             // 5M > 2H > 236M~5LLL > (5LLL > 236H~S)x3 5LLL > 236L~M
             notation={[
-              <>
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='M' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={2} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={236} />
                 <Attack button='M' />
                 <FollowUp />
@@ -94,8 +124,8 @@ export default function Home() {
                 <Attack button='L' />
                 <Attack button='L' />
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep sparking={true}>
                 <Dpad direction={5} />
                 <Attack button='L' />
                 <Attack button='L' />
@@ -105,20 +135,20 @@ export default function Home() {
                 <FollowUp />
                 <Attack button='S' />
                 <Loop>x3</Loop>
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='L' />
                 <Attack button='L' />
                 <Modifier reverse={true}>(3)</Modifier>
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={236} />
                 <Attack button='L' />
                 <FollowUp />
                 <Attack button='M' />
-              </>,
+              </ComboStep>,
             ]}
           />
           <Combo
@@ -129,55 +159,55 @@ export default function Home() {
             description='Corner Bnb #3'
             // 5M > 2M > 6H > 5S > SD > j.2H ▷ 6H > 5H > 5S > SD > j.ML > jc > j.LL2HS > j.214M~M
             notation={[
-              <>
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='M' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={2} />
                 <Attack button='M' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={6} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='S' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Attack button='S' />
                 <SuperDash />
                 <DragonRush />
                 <Dpad direction={5} />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Modifier>j.</Modifier>
                 <Dpad direction={2} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Modifier>land</Modifier>
                 <Dpad direction={6} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='S' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <SuperDash />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Modifier>j.</Modifier>
                 <Attack button='M' />
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Modifier>jc.</Modifier>
                 <Attack button='L' />
                 <Modifier>delay</Modifier>
@@ -186,14 +216,14 @@ export default function Home() {
                 <Modifier>vanish</Modifier>
                 <Attack button='H' />
                 <Attack button='S' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Modifier>j.</Modifier>
                 <Dpad direction={214} />
                 <Attack button='M' />
                 <FollowUp />
                 <Attack button='M' />
-              </>,
+              </ComboStep>,
             ]}
           />
           <Combo
@@ -203,32 +233,32 @@ export default function Home() {
             difficulty='Very easy'
             description='Standard Sayian BnB, the combo you will be using most often.'
             notation={[
-              <>
+              <ComboStep>
                 <Attack button='L' />
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={2} />
                 <Attack button='M' />
                 <Attack button='M' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={5} />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Attack button='L' />
                 <Attack button='L' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Attack button='S' />
                 <Attack button='H' />
-              </>,
-              <>
+              </ComboStep>,
+              <ComboStep>
                 <Dpad direction={236} />
                 <Attack button='H' />
                 <Attack button='S' />
-              </>,
+              </ComboStep>,
             ]}
           />
         </ComboWrapper>
