@@ -60,6 +60,14 @@ const GlobalStyles = createGlobalStyle`
   #__next {
     isolation: isolate;
   }
+  /* FONTS */
+  @font-face {
+    font-family: 'Sayian Sans';
+    src: url('/fonts/SayianSans/Saiyan-Sans.ttf');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
 `;
 
 export default GlobalStyles;

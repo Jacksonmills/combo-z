@@ -16,7 +16,7 @@ const ComboStep = ({ inputs, sparking }) => {
         return <Input key={idx} input={input} />;
       })}
       {sparking ? (
-        <Image src='/img/effect/sparking_active.png' layout='fill' />
+        <Image src='/images/effect/sparking_active.png' layout='fill' />
       ) : null}
     </Wrapper>
   );

@@ -29,7 +29,7 @@ export default function Home() {
           href='https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Hind+Guntur:wght@400;500;600&display=swap'
           rel='stylesheet'
         ></link>
-        <link rel='icon' href='/img/2h.png' />
+        <link rel='icon' href='/images/2h.png' />
       </Head>
       <MaxWidthWrapper>
         <ComboWrapper>

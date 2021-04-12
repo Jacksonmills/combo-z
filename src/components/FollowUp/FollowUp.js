@@ -6,7 +6,7 @@ const FollowUp = () => {
   return (
     <Wrapper>
       <Image
-        src='/img/misc/follow_up.png'
+        src='/images/misc/follow_up.png'
         width={36}
         height={26}
         layout='fixed'

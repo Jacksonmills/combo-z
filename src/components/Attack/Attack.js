@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import Image from 'next/image';
 
 const Attack = ({ button }) => {
-  const src = `/img/button/${button}.png`;
+  const src = `/images/button/${button}.png`;
 
   return (
     <Wrapper>

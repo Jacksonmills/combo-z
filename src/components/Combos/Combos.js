@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 import Combo from '../Combo';
 
 const Combos = ({ character, combos }) => {
-  console.log(combos);
   return (
     <ComboWrapper>
       {combos &&

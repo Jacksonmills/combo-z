@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import Image from 'next/image';
 
 const Dpad = ({ direction }) => {
-  const src = `/img/dpad/${direction}.png`;
+  const src = `/images/dpad/${direction}.png`;
   return (
     <Wrapper>
       <Image src={src} width={36} height={36} layout='fixed' />

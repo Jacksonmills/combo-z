@@ -1,43 +1,38 @@
 import styled from 'styled-components/macro';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { connectToDatabase } from '../../../util/mongodb';
 
 import Header from '../../../components/Header';
 import MaxWidthWrapper from '../../../components/MaxWidthWrapper';
 import Combos from '../../../components/Combos';
+import Layout from '@/components/Layout';
 
 const Characters = ({ characters, combos }) => {
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <Wrapper>
-      <Header />
+    <Layout>
+      <Header characters={characters} />
       <MaxWidthWrapper>
         {characters &&
           characters.map((character, _id) => {
             return character.tag === id ? (
-              <h1 key={_id}>{character.character}</h1>
+              <Wrapper key={_id}>
+                <Image src={character.imageUrl} layout='fill' />
+                <h1>{character.character}</h1>
+              </Wrapper>
             ) : null;
           })}
 
         <Combos character={id} combos={combos} />
       </MaxWidthWrapper>
-    </Wrapper>
+    </Layout>
   );
 };
 
-const Wrapper = styled.div`
-  min-height: 100%;
-  background: hsl(0, 55%, 47%);
-  background: linear-gradient(
-    335deg,
-    hsl(0, 55%, 47%) 0%,
-    hsl(52, 100%, 49%) 100%
-  );
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+const Wrapper = styled.div``;
 
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
@@ -57,6 +52,7 @@ export async function getServerSideProps(context) {
       _id: character._id,
       character: character.character,
       tag: character.tag,
+      imageUrl: character.imageUrl,
     };
   });
   const filteredCombos = combos.map((combo) => {
