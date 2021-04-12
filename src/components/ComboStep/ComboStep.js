@@ -2,7 +2,9 @@ import styled from 'styled-components/macro';
 
 import Image from 'next/image';
 
-const ComboStep = ({ children, sparking }) => {
+import Input from '../Input';
+
+const ComboStep = ({ inputs, sparking }) => {
   return (
     <Wrapper
       sparking={sparking}
@@ -10,7 +12,9 @@ const ComboStep = ({ children, sparking }) => {
         '--background-color': `${sparking ? '#ff9dad' : 'hsl(0, 0%, 80%)'}`,
       }}
     >
-      {children}
+      {inputs.map((input, idx) => {
+        return <Input key={idx} input={input} />;
+      })}
       {sparking ? (
         <Image src='/img/effect/sparking_active.png' layout='fill' />
       ) : null}

@@ -2,11 +2,11 @@ import styled from 'styled-components/macro';
 
 import { COLORS } from '../../constants';
 
-const Loop = ({ children }) => {
+const Loop = ({ repeat }) => {
   return (
     <Wrapper>
       <TextWrapper>
-        <Text>{children}</Text>
+        <Text>({repeat})</Text>
       </TextWrapper>
     </Wrapper>
   );

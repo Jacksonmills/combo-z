@@ -3,25 +3,26 @@ import styled from 'styled-components/macro';
 import { COLORS } from '../../constants';
 import { Edit } from 'react-feather';
 
+import ComboStep from '../ComboStep';
+
 const Combo = (props) => {
-  const notation = props.notation;
-  const listSteps = notation.map((step, index) => (
-    <div key={index}>{step}</div>
-  ));
+  const steps = props.notation.map((step, idx) => {
+    return <ComboStep key={idx} inputs={step} />;
+  });
 
   return (
     <Wrapper>
       <Header>
         <Name>{props.character}</Name>
-        <Location>Location: {props.location}</Location>
+        <Location>Location: {props.worksOn}</Location>
       </Header>
       <Info>
         <Difficulty>({props.difficulty})</Difficulty>
         <Dmg>Damage: {props.damage}%</Dmg>
       </Info>
-      <p>{props.description}</p>
+      <p>{props.notes}</p>
       <StepsWrapper>
-        {listSteps}
+        {steps}
         <AddStep
           type='button'
           onClick={() => notation.push(<ComboStep>TEST</ComboStep>)}
