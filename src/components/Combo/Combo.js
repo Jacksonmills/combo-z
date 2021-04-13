@@ -10,17 +10,21 @@ const Combo = (props) => {
     return <ComboStep key={idx} inputs={step} />;
   });
 
+  const tagUrl = `https://twitter.com/search?q=%23DBFZ_${props.character}&src=typed_query`;
+
   return (
     <Wrapper>
-      <Header>
-        <Name>{props.character}</Name>
-        <Location>Location: {props.worksOn}</Location>
-      </Header>
-      <Info>
+      <Tag href={tagUrl} target='_blank'>
+        #DBFZ_{props.character}
+      </Tag>
+      <Row>
+        <p>{props.notes}</p>
+        <Location>{props.worksOn}</Location>
+      </Row>
+      <Row>
         <Difficulty>({props.difficulty})</Difficulty>
         <Dmg>Damage: {props.damage}%</Dmg>
-      </Info>
-      <p>{props.notes}</p>
+      </Row>
       <StepsWrapper>
         {steps}
         <AddStep
@@ -34,40 +38,21 @@ const Combo = (props) => {
   );
 };
 
-const Wrapper = styled.div`
-  background-color: ${COLORS.white};
-  box-shadow: 3px 3px 9px -1px hsl(52, 100%, 49%);
-  padding: 2em;
-  border-radius: 20px;
-`;
+const Wrapper = styled.div``;
 
-const Header = styled.div`
+const Row = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 `;
 
-const Info = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-`;
+const Tag = styled.a``;
 
-const Name = styled.h2`
-  font-size: ${44 / 16}rem;
-`;
+const Location = styled.span``;
 
-const Location = styled.span`
-  font-size: ${24 / 16}rem;
-`;
+const Dmg = styled.span``;
 
-const Dmg = styled.span`
-  font-size: ${24 / 16}rem;
-`;
-
-const Difficulty = styled.span`
-  font-size: ${18 / 16}rem;
-`;
+const Difficulty = styled.span``;
 
 const AddStep = styled.button`
   display: flex;
@@ -99,6 +84,11 @@ const StepsWrapper = styled.ul`
   flex-wrap: wrap;
   grid-gap: 8px;
   margin-top: 10px;
+
+  background-color: ${COLORS.white};
+  box-shadow: -8px 8px 0px 0px black;
+  padding: 2em 3em;
+  border: 4px solid black;
 `;
 
 export default Combo;

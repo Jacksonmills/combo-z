@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export default styled.div`
   min-height: 100%;
+  padding-top: 100px;
   background: hsl(0, 55%, 47%);
   background: linear-gradient(
     335deg,

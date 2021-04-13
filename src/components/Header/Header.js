@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import Link from 'next/link';
 
 const Header = ({ characters }) => {
+  console.log(characters);
   return (
     <Wrapper>
       <Link href='/'>
@@ -25,18 +26,21 @@ const Header = ({ characters }) => {
 };
 
 const Wrapper = styled.header`
+  position: fixed;
+  width: 100%;
   background: white;
+  border-bottom: 4px solid black;
   display: flex;
   align-items: center;
   padding: 0 24px;
+  z-index: 99;
 `;
 
 const Logo = styled.a`
   font-size: ${55 / 16}rem;
   letter-spacing: 2px;
   font-family: 'Sayian Sans';
-  color: yellow;
-  text-shadow: 0px 0px 5px red;
+  color: black;
   margin-right: auto;
   cursor: pointer;
 `;

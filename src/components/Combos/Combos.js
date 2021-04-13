@@ -2,24 +2,22 @@ import styled from 'styled-components/macro';
 
 import Combo from '../Combo';
 
-const Combos = ({ character, combos }) => {
+const Combos = ({ combos }) => {
   return (
     <ComboWrapper>
       {combos &&
-        combos.map((combo, _id) => {
-          return combo.character === character ? (
-            <Combo
-              key={_id}
-              character={combo.character}
-              notation={combo.notation}
-              damage={combo.damage}
-              meterGain={combo.meterGain}
-              worksOn={combo.worksOn}
-              difficulty={combo.difficulty}
-              notes={combo.notes}
-            />
-          ) : null;
-        })}
+        combos.map((combo, _id) => (
+          <Combo
+            key={_id}
+            character={combo.character}
+            notation={combo.notation}
+            damage={combo.damage}
+            meterGain={combo.meterGain}
+            worksOn={combo.worksOn}
+            difficulty={combo.difficulty}
+            notes={combo.notes}
+          />
+        ))}
     </ComboWrapper>
   );
 };
