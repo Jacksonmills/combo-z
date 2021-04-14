@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import Link from 'next/link';
 import Image from 'next/image';
 import { connectToDatabase } from '@/util/mongodb';
+import { server } from '@/config';
 
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
@@ -24,15 +25,13 @@ export default function Home({ characters, combos }) {
       <Layout>
         <MaxWidthWrapper>
           <h1>Welcome!</h1>
-          <h2>Build and share combos!</h2>
-          <Combos character={randomCharacter} combos={combos} />
           <Links>
             {characters &&
               characters.map((character, _id) => {
                 const url = `/characters/${character.tag}`;
                 return (
                   <li key={_id}>
-                    <Link href='/characters/[id]' as={url}>
+                    <Link href='/characters/[id]' as={url} passHref>
                       <ImageWrapper>
                         <Image
                           src={character.icon}
@@ -45,6 +44,8 @@ export default function Home({ characters, combos }) {
                 );
               })}
           </Links>
+          <h2>Build and share combos!</h2>
+          <Combos character={randomCharacter} combos={combos} />
         </MaxWidthWrapper>
       </Layout>
     </>
@@ -53,37 +54,33 @@ export default function Home({ characters, combos }) {
 
 const Links = styled.ul`
   display: flex;
+  row-gap: 6px;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-
-  a {
-    font-size: ${24 / 16}rem;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-  }
+  cursor: default;
+  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, default;
+  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, auto;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.a`
   position: relative;
   display: block;
   aspect-ratio: 141 / 84;
   width: 141px;
-
-  cursor: pointer;
-
+  cursor: inherit;
+  overflow: visible;
   will-change: transform;
   transition: transform 400ms ease;
 
   &:hover {
-    transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px) translateZ(0);
+    will-change: transform;
     transition: transform 100ms ease;
   }
 
   img {
     object-fit: fit;
-    /* opacity: 0.3; */
   }
 `;
 

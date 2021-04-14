@@ -81,14 +81,19 @@ const AddStep = styled.button`
 
 const StepsWrapper = styled.ul`
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   grid-gap: 8px;
   margin-top: 10px;
-
+  flex-direction: column;
   background-color: ${COLORS.white};
   box-shadow: -8px 8px 0px 0px black;
   padding: 2em 3em;
   border: 4px solid black;
+
+  @media (min-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 `;
 
 export default Combo;

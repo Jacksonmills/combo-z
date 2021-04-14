@@ -2,7 +2,6 @@ import styled from 'styled-components/macro';
 import Link from 'next/link';
 
 const Header = ({ characters }) => {
-  console.log(characters);
   return (
     <Wrapper>
       <Link href='/'>

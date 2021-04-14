@@ -28,7 +28,6 @@ const ComboWrapper = styled.div.attrs((props) => ({
   display: grid;
   /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
   grid-gap: 24px;
-  place-content: center;
   padding-top: 20px;
   padding-bottom: 20px;
 `;
