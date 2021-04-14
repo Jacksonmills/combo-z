@@ -14,17 +14,16 @@ const Combo = (props) => {
 
   return (
     <Wrapper>
-      <Tag href={tagUrl} target='_blank'>
-        #DBFZ_{props.character}
-      </Tag>
-      <Row>
-        <p>{props.notes}</p>
-        <Location>{props.worksOn}</Location>
-      </Row>
-      <Row>
-        <Difficulty>({props.difficulty})</Difficulty>
-        <Dmg>Damage: {props.damage}%</Dmg>
-      </Row>
+      <Content>
+        {/* <Tag href={tagUrl} target='_blank'>
+          #DBFZ_{props.character}
+        </Tag> */}
+        <Info>
+          <Location>Works on: {props.worksOn}</Location>
+          <Difficulty>({props.difficulty})</Difficulty>
+          <Dmg>Damage: {props.damage}%</Dmg>
+        </Info>
+      </Content>
       <StepsWrapper>
         {steps}
         <AddStep
@@ -34,16 +33,30 @@ const Combo = (props) => {
           <Edit />
         </AddStep>
       </StepsWrapper>
+
+      <Notes>{props.notes}</Notes>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div``;
+const Content = styled.div`
+  border: 4px solid black;
+  background-color: black;
+  color: white;
+  padding: 0.5em;
+  margin: 1em;
+  margin-bottom: 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+`;
 
-const Row = styled.div`
+const Info = styled.div`
   display: flex;
-  align-items: baseline;
+  gap: 8px;
   justify-content: space-between;
+  font-size: ${20 / 16}rem;
+  font-weight: 500;
 `;
 
 const Tag = styled.a``;
@@ -53,6 +66,21 @@ const Location = styled.span``;
 const Dmg = styled.span``;
 
 const Difficulty = styled.span``;
+const Notes = styled.div`
+  background-color: white;
+  color: black;
+  padding: 0.5em;
+  margin: 1em;
+  margin-top: 4px;
+  border: 4px solid black;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  font-size: ${20 / 16}rem;
+  font-weight: 500;
+`;
 
 const AddStep = styled.button`
   display: flex;
@@ -61,19 +89,21 @@ const AddStep = styled.button`
   width: ${36 / 16}rem;
   height: ${36 / 16}rem;
   align-self: center;
-  background-color: ${COLORS.gray[300]};
+  background-color: transparent;
   color: ${COLORS.gray[900]};
   cursor: pointer;
   border: none;
   border-radius: 6px;
-  transition: background-color 100ms ease;
+  transition: all 50ms ease;
+  transition-property: background-color, color;
 
   &:hover {
-    background-color: ${COLORS.gray[400]};
+    background-color: hsl(0, 0%, 90%);
+    color: ${COLORS.black};
   }
 
   svg {
-    width: ${24 / 16}rem;
+    width: ${20 / 16}rem;
     height: auto;
     stroke: currentColor;
   }
@@ -83,7 +113,7 @@ const StepsWrapper = styled.ul`
   display: flex;
   align-items: center;
   grid-gap: 8px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   flex-direction: column;
   background-color: ${COLORS.white};
   box-shadow: -8px 8px 0px 0px black;

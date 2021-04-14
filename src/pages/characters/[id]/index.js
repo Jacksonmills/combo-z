@@ -23,7 +23,7 @@ const Characters = ({ allCharacters, character, combos }) => {
               return (
                 <Wrapper key={_id}>
                   <ImageWrapper>
-                    <Image src={character.icon} layout='fill' preload='true' />
+                    <Image src={character.icon} layout='fill' priority />
                   </ImageWrapper>
                   <VisuallyHidden>
                     <h1>{character.character}</h1>

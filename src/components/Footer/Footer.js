@@ -1,30 +1,37 @@
 import styled from 'styled-components/macro';
 import Link from 'next/link';
-import { GitHub } from 'react-feather';
+import { GitHub, Flag } from 'react-feather';
+
+import Tooltip from '../Tooltip';
 
 const Footer = () => {
+  const disclaimerContent = `Disclaimer: Content is available under CC  BY-NC-SA 3.0 unless otherwise noted. Game content and materials are trademarks and copyrights of their respective publisher and its licensors. All rights reserved.`;
+
   return (
     <Wrapper>
-      <Link href='/'>
-        <Logo>ComboZ</Logo>
-      </Link>
-      <Disclaimer>
-        Content is available under CC BY-NC-SA 3.0 unless otherwise noted. Game
-        content and materials are trademarks and copyrights of their respective
-        publisher and its licensors. All rights reserved.
-      </Disclaimer>
       <Links>
         <Link href='https://github.com/Jacksonmills/combo-z'>
           <a>
             <GitHub />
           </a>
         </Link>
-        <Link href='https://github.com/Jacksonmills/combo-z'>
-          <a>
-            <GitHub />
-          </a>
-        </Link>
       </Links>
+      <Link href='/'>
+        <Logo>ComboZ</Logo>
+      </Link>
+      <Tooltip
+        content={disclaimerContent}
+        distance={18}
+        duration={48}
+        placement='top'
+        delay={[248, 0]}
+        followCursor={true}
+        href='https://creativecommons.org/licenses/by-nc-sa/3.0/'
+      >
+        <Disclaimer>
+          <Flag />
+        </Disclaimer>
+      </Tooltip>
     </Wrapper>
   );
 };
@@ -52,23 +59,16 @@ const Logo = styled.a`
   color: #d36601;
   cursor: pointer;
   transition: filter 200ms ease;
+  margin: 0 auto;
 
   &:hover {
     filter: brightness(1.2);
-  }
-
-  @media (min-width: 768px) {
-    margin-right: auto;
   }
 `;
 
 const Links = styled.ul`
   display: flex;
   gap: 16px;
-
-  @media (min-width: 768px) {
-    margin-left: 16px;
-  }
 
   a {
     display: flex;
@@ -85,14 +85,9 @@ const Links = styled.ul`
 `;
 
 const Disclaimer = styled.p`
-  color: #808080;
-  font-size: ${10 / 16}rem;
-  max-width: 500px;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    text-align: right;
-  }
+  color: #c27400;
+  display: flex;
+  align-items: center;
 `;
 
 export default Footer;

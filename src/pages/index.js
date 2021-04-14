@@ -33,11 +33,7 @@ export default function Home({ characters, combos }) {
                   <li key={_id}>
                     <Link href='/characters/[id]' as={url} passHref>
                       <ImageWrapper>
-                        <Image
-                          src={character.icon}
-                          layout='fill'
-                          preload='true'
-                        />
+                        <Image src={character.icon} layout='fill' priority />
                       </ImageWrapper>
                     </Link>
                   </li>
