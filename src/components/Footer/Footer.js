@@ -21,11 +21,11 @@ const Footer = () => {
       </Link>
       <Tooltip
         content={disclaimerContent}
-        distance={18}
+        offset={[0, 20]}
         duration={48}
         placement='top'
         delay={[248, 0]}
-        followCursor={true}
+        followCursor={false}
         href='https://creativecommons.org/licenses/by-nc-sa/3.0/'
       >
         <Disclaimer>

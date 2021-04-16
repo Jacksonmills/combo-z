@@ -2,5 +2,5 @@
   "presets": [
     "next/babel"
   ],
-  "plugins": ["macros"]
+  "plugins": ["macros", "styled-components"]
 }

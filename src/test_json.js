@@ -37,7 +37,7 @@ export const COMBOS = [
     "_id": {
         "$oid": "6073201777ff5d2815e6e6ce"
     },
-    "character": "Goku Black",
+    "character": "PIC",
     "notation": [{
         "$numberLong": "2"
     }, "M", {
@@ -50,14 +50,14 @@ export const COMBOS = [
         "$numberLong": "236"
     }, "H", "S"],
     "damage": {
-        "$numberLong": "41"
+        "$numberLong": "54"
     },
     "meterGain": {
-        "$numberLong": "1"
+        "$numberLong": "0.9"
     },
-    "worksOn": "All",
-    "difficulty": "Very Easy",
-    "notes": "Standard Sayian BnB"
+    "worksOn": "",
+    "difficulty": "Medium",
+    "notes": "j.214M > land 5L link example into ground DR. Needs super jump and a few delays to get high enough."
 }
 
 // {

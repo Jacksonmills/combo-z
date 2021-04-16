@@ -7,6 +7,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <GlobalStyles />
       <Footer />
+      <div id='character-select'></div>
     </>
   );
 }

@@ -19,7 +19,9 @@ const Combo = (props) => {
           #DBFZ_{props.character}
         </Tag> */}
         <Info>
-          <Location>Works on: {props.worksOn}</Location>
+          {props.worksOn ? (
+            <Location>Works on: {props.worksOn}</Location>
+          ) : null}
           <Difficulty>({props.difficulty})</Difficulty>
           <Dmg>Damage: {props.damage}%</Dmg>
         </Info>
@@ -33,7 +35,6 @@ const Combo = (props) => {
           <Edit />
         </AddStep>
       </StepsWrapper>
-
       <Notes>{props.notes}</Notes>
     </Wrapper>
   );
@@ -42,13 +43,13 @@ const Combo = (props) => {
 const Wrapper = styled.div``;
 const Content = styled.div`
   border: 4px solid black;
-  background-color: black;
-  color: white;
-  padding: 0.5em;
+  background-color: white;
+  color: black;
+  padding: 0.5em 1em;
   margin: 1em;
-  margin-bottom: 0;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  margin-bottom: -4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const Info = styled.div`
@@ -69,16 +70,16 @@ const Difficulty = styled.span``;
 const Notes = styled.div`
   background-color: white;
   color: black;
-  padding: 0.5em;
+  padding: 0.5em 1em;
   margin: 1em;
   margin-top: 4px;
   border: 4px solid black;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   display: flex;
   gap: 8px;
   justify-content: space-between;
-  font-size: ${20 / 16}rem;
+  font-size: ${16 / 16}rem;
   font-weight: 500;
 `;
 

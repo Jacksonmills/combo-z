@@ -28,12 +28,17 @@ export default function Home({ characters, combos }) {
           <Links>
             {characters &&
               characters.map((character, _id) => {
-                const url = `/characters/${character.tag}`;
+                const url = `/character/${character.tag}`;
                 return (
                   <li key={_id}>
-                    <Link href='/characters/[id]' as={url} passHref>
+                    <Link href='/character/[id]' as={url} passHref>
                       <ImageWrapper>
-                        <Image src={character.icon} layout='fill' priority />
+                        <Image
+                          src={character.icon}
+                          width={133}
+                          height={79}
+                          priority
+                        />
                       </ImageWrapper>
                     </Link>
                   </li>
@@ -62,32 +67,26 @@ const Links = styled.ul`
 const ImageWrapper = styled.a`
   position: relative;
   display: block;
-  aspect-ratio: 141 / 84;
-  width: 141px;
+  aspect-ratio: 133 / 79;
   cursor: inherit;
   overflow: visible;
-  will-change: transform;
-  transition: transform 400ms ease;
+  will-change: transform, filter;
+  transition: all 400ms ease;
+  transition-property: transform, filter;
 
   &:hover {
     transform: translate(-2px, -2px) translateZ(0);
-    will-change: transform;
-    transition: transform 100ms ease;
-  }
-
-  img {
-    object-fit: fit;
+    filter: brightness(1.1);
+    will-change: transform, filter;
+    transition: all 100ms ease;
+    transition-property: transform, filter;
   }
 `;
 
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
 
-  const characterData = await db
-    .collection('characters')
-    .find({})
-    .limit(20)
-    .toArray();
+  const characterData = await db.collection('characters').find({}).toArray();
   const comboData = await db.collection('combos').find({}).limit(20).toArray();
 
   const characters = JSON.parse(JSON.stringify(characterData));

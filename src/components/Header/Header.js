@@ -1,25 +1,15 @@
 import styled from 'styled-components/macro';
 import Link from 'next/link';
 
+import CharacterSelect from '../CharacterSelect';
+
 const Header = ({ characters }) => {
   return (
     <Wrapper>
       <Link href='/'>
         <Logo>ComboZ</Logo>
       </Link>
-      <Links>
-        {characters &&
-          characters.map((character, _id) => {
-            const url = `/characters/${character.tag}`;
-            return (
-              <li key={_id}>
-                <Link href='/characters/[id]' as={url}>
-                  {character.tag}
-                </Link>
-              </li>
-            );
-          })}
-      </Links>
+      <CharacterSelect characters={characters} />
     </Wrapper>
   );
 };
@@ -42,18 +32,6 @@ const Logo = styled.a`
   color: black;
   margin-right: auto;
   cursor: pointer;
-`;
-
-const Links = styled.ul`
-  display: flex;
-  gap: 16px;
-
-  a {
-    font-size: ${24 / 16}rem;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-  }
 `;
 
 export default Header;

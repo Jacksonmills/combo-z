@@ -68,6 +68,11 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     font-display: swap;
   }
+  /* PORTALS */
+  #character-select {
+    position: relative;
+    z-index: 999;
+  }
 `;
 
 export default GlobalStyles;

@@ -10,6 +10,7 @@ const ComboStep = ({ inputs, sparking }) => {
       sparking={sparking}
       style={{
         '--background-color': `${sparking ? '#ff9dad' : 'hsl(0, 0%, 80%)'}`,
+        '--active-color': '#ffd86c',
       }}
     >
       {inputs.map((input, idx) => {
@@ -38,18 +39,20 @@ const Wrapper = styled.li`
       100%
   );
   ${(props) => (props.sparking ? 'box-shadow: 0 0 0 2px #ff0037;' : null)}
-  border-radius: 6px;
-  padding: 5px;
+  border-radius: 4px;
+  padding: 4px 8px;
 
   img {
     object-fit: cover;
   }
 
+  &:focus-within {
+    background: var(--active-color);
+  }
+
   @media (min-width: 768px) {
     flex-direction: row;
     flex: 0 0 56px;
-    border-top-left-radius: ${(props) => (props.sparking ? '6px' : '0')};
-    border-bottom-left-radius: ${(props) => (props.sparking ? '6px' : '0')};
     background: linear-gradient(
       -90deg,
       var(--background-color) 0%,
