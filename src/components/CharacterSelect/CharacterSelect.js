@@ -17,7 +17,7 @@ const CharacterSelect = ({ characters }) => {
     top: '26px',
     right: '26px',
     willChange: 'transform',
-    transform: isHovered ? `scale(1.2)` : `scale(1)`,
+    transform: isHovered ? `scale(1.1)` : `scale(1)`,
     config: {
       tension: 300,
       friction: 10,
@@ -32,18 +32,23 @@ const CharacterSelect = ({ characters }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <CloseButton onClick={() => setShowCharacters(false)}>
+          <CloseButton onClick={() => setShowCharacters((state) => !state)}>
             <Minimize2 />
           </CloseButton>
         </animated.div>
         <Links>
           {characters &&
             characters.map((character, _id) => {
-              const url = `/character/${character.tag}`;
               return (
                 <li key={_id}>
-                  <Link href='/character/[id]' as={url} passHref>
-                    <ImageWrapper onClick={() => setShowCharacters(false)}>
+                  <Link
+                    href='/character/[id]'
+                    as={`/character/${character.tag}`}
+                    passHref
+                  >
+                    <ImageWrapper
+                      onClick={() => setShowCharacters((state) => !state)}
+                    >
                       <Image
                         src={character.icon}
                         width={133}
@@ -63,7 +68,7 @@ const CharacterSelect = ({ characters }) => {
 
   return (
     <>
-      <UnstyledButton onClick={() => setShowCharacters(true)}>
+      <UnstyledButton onClick={() => setShowCharacters((state) => !state)}>
         Character Select
       </UnstyledButton>
       {showCharacters && <Characters showCharacters={showCharacters} />}

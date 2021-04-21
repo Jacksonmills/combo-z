@@ -19,9 +19,7 @@ const Combo = (props) => {
           #DBFZ_{props.character}
         </Tag> */}
         <Info>
-          {props.worksOn ? (
-            <Location>Works on: {props.worksOn}</Location>
-          ) : null}
+          {props.worksOn && <Location>Works on: {props.worksOn}</Location>}
           <Difficulty>({props.difficulty})</Difficulty>
           <Dmg>Damage: {props.damage}%</Dmg>
         </Info>
