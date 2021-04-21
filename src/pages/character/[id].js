@@ -49,22 +49,16 @@ const ImageWrapper = styled.div`
   }
 `;
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(context) {
+  const { id } = context.query;
   const { db } = await connectToDatabase();
 
+  const charactersData = await db.collection('characters').find({}).toArray();
   const characterData = await db.collection('characters').findOne(
-    {
-      tag: params.id,
-    },
+    { tag: id },
     {
       projection: {
+        _id: 1,
         character: 1,
         tag: 1,
         icon: 1,
@@ -72,24 +66,21 @@ export async function getStaticProps({ params }) {
       },
     }
   );
-
-  const allCharactersData = await db
-    .collection('characters')
-    .find({})
-    .toArray();
-
   const combosData = await db
     .collection('combos')
-    .find({ character: params.id })
+    .find({ character: id })
     .toArray();
 
+  const characters = JSON.parse(JSON.stringify(charactersData));
   const character = JSON.parse(JSON.stringify(characterData));
-  const characters = JSON.parse(JSON.stringify(allCharactersData));
   const combos = JSON.parse(JSON.stringify(combosData));
 
   return {
-    props: { character, characters, combos },
-    revalidate: 1,
+    props: {
+      characters,
+      character,
+      combos,
+    },
   };
 }
 
