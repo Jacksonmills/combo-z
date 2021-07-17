@@ -4,7 +4,7 @@ import FollowUp from '../FollowUp';
 import SuperDash from '../SuperDash';
 import DragonRush from '../DragonRush';
 import Modifier from '../Modifier';
-import Loop from '../Loop';
+// import Loop from '../Loop';
 // import MultiHit from '../MultiHit';
 
 const Input = ({ input }) => {

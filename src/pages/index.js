@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Link from 'next/link';
 import Image from 'next/image';
+import { signIn, signOut, useSession, getSession } from 'next-auth/client';
 import { connectToDatabase } from '@/util/mongodb';
 import { server } from '@/config';
 
@@ -10,7 +11,8 @@ import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 
-export default function Home({ characters, combos }) {
+export default function Home({ characters, combos, session }) {
+  console.log('session: ', session);
   const [randomCharacter, setRandomCharacter] = useState('');
 
   useEffect(() => {
@@ -24,7 +26,24 @@ export default function Home({ characters, combos }) {
       <Header characters={characters} />
       <Layout>
         <MaxWidthWrapper>
-          <h1>Welcome!</h1>
+          <h1>
+            Welcome{' '}
+            {session
+              ? `${session.user.name}, lets build a combo!`
+              : 'to ComboZ'}
+          </h1>
+          {!session && (
+            <>
+              <h2>NOT SIGNED IN</h2>
+              <button onClick={() => signIn()}>Sign In</button>
+            </>
+          )}
+          {session && (
+            <>
+              <h2>Welcome {session.user.email}</h2>
+              <button onClick={() => signOut()}>Sign Out</button>
+            </>
+          )}
           <Links>
             {characters &&
               characters.map((character, _id) => {
@@ -113,7 +132,13 @@ export async function getServerSideProps(context) {
     };
   });
 
+  const session = await getSession(context);
+
   return {
-    props: { characters: filteredCharacters, combos: filteredCombos },
+    props: {
+      characters: filteredCharacters,
+      combos: filteredCombos,
+      session,
+    },
   };
 }

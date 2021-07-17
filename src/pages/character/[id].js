@@ -42,6 +42,20 @@ const ImageWrapper = styled.div`
   width: 100%;
   border-radius: 100px;
 
+  @supports not (aspect-ratio: 141 / 84) {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+
   img {
     object-fit: none;
     object-position: top;
