@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@tippyjs/react": "^4.2.5",
-    "mongodb": "^3.6.6",
+    "mongodb": "^4.8.0",
     "next": "12",
     "next-auth": "^4.10.0",
     "react": "^18.2.0",

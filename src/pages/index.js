@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
-import { signIn, signOut, useSession, getSession } from 'next-auth/react';
-import { connectToDatabase } from '@/util/mongodb';
-import { server } from '@/config';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { signIn, signOut, useSession, getSession } from 'next-auth/react';
+// import { connectToDatabase } from '@/util/mongodb';
+// import { server } from '@/config';
 
-import Header from '@/components/Header';
-import Layout from '@/components/Layout';
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import Combos from '@/components/Combos';
+// import Header from '@/components/Header';
+// import Layout from '@/components/Layout';
+// import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+// import Combos from '@/components/Combos';
 
 export default function Home({ characters, combos, session }) {
   const [randomCharacter, setRandomCharacter] = useState('');
