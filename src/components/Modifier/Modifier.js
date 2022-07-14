@@ -16,15 +16,8 @@ const Wrapper = styled.div`
   display: inline-block;
   padding: 0 5px;
   z-index: 1;
-  margin-bottom: ${(props) => (props.reverse ? '5px' : '-24px')};
-  margin-top: ${(props) => (props.reverse ? '-24px' : '5px')};
-
-  @media (min-width: 768px) {
-    margin-bottom: 0;
-    margin-top: 0;
-    margin-right: ${(props) => (props.reverse ? '5px' : '-24px')};
-    margin-left: ${(props) => (props.reverse ? '-24px' : '5px')};
-  }
+  margin-right: ${(props) => (props.reverse ? '5px' : '-24px')};
+  margin-left: ${(props) => (props.reverse ? '-24px' : '5px')};
 `;
 
 const TextWrapper = styled.span`
@@ -41,12 +34,8 @@ const TextWrapper = styled.span`
   min-width: 20px;
   border-radius: 1px;
 
-  padding: ${(props) => (props.reverse ? '18px 2px 1px' : '1px 2px 18px')};
-
-  @media (min-width: 768px) {
-    padding: ${(props) =>
+  padding: ${(props) =>
     props.reverse ? '0px 5px 1px 16px' : '0px 16px 1px 5px'};
-  }
 
   /* default */
   /* border-top-right-radius: ${(props) => (props.reverse ? '1px' : '0')};
