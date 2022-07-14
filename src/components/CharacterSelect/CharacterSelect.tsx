@@ -8,7 +8,7 @@ import { Minimize2 } from 'react-feather';
 
 import UnstyledButton from '../UnstyledButton';
 
-const CharacterSelect = ({ characters }) => {
+const CharacterSelect = ({ characters }: { characters: any; }) => {
   const [showCharacters, setShowCharacters] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -22,6 +22,7 @@ const CharacterSelect = ({ characters }) => {
   });
 
   const Characters = () => {
+    const modalDiv: HTMLElement = document.getElementById('character-select')!;
     return createPortal(
       <CharacterPortal>
         <Wrapper>
@@ -37,7 +38,7 @@ const CharacterSelect = ({ characters }) => {
             </AnimatedDiv>
             <Links>
               {characters &&
-                characters.map((character, _id) => {
+                characters.map((character: any, _id: string) => {
                   return (
                     <li key={_id}>
                       <Link
@@ -63,7 +64,7 @@ const CharacterSelect = ({ characters }) => {
           </Modal>
         </Wrapper>
       </CharacterPortal>,
-      document.getElementById('character-select')
+      modalDiv
     );
   };
 
