@@ -6,7 +6,7 @@ import 'tippy.js/dist/tippy.css'; // optional
 import 'tippy.js/animations/shift-away-subtle.css';
 
 import UnstyledButton from '../UnstyledButton';
-import { COLORS } from '../../constants';
+import { COLORS } from '@/constants';
 
 const Tooltip = ({
   content,

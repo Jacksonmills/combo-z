@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['www.dustloop.com'],
+    domains: ['www.dustloop.com', 'www.twitter.com', 'abs.twimg.com', 'pbs.twimg.com'],
   },
 };
 

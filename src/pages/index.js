@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { connectToDatabase } from '@/util/mongodb';
 
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
+import VisuallyHidden from '@/components/VisuallyHidden';
 
 export default function Home({ characters, combos }) {
   const { data: session, status } = useSession();
@@ -23,48 +22,17 @@ export default function Home({ characters, combos }) {
 
   return (
     <>
-      <Header characters={characters} />
+      <Header characters={characters} status={status} session={session} />
       <Layout>
         <MaxWidthWrapper>
-          <h1>
+          <VisuallyHidden as="h1">ComboZ</VisuallyHidden>
+          <WelcomeMessage>
             Welcome{' '}
             {loggedIn
               ? `${session.user.name}, lets build a combo!`
               : 'to ComboZ'}
-          </h1>
-          {!loggedIn && (
-            <>
-              <h2>NOT SIGNED IN</h2>
-              <button onClick={() => signIn('twitter')}>Sign In with Twitter</button>
-            </>
-          )}
-          {loggedIn && (
-            <>
-              <h2>Welcome {session.user.email}</h2>
-              <button onClick={() => signOut()}>Sign Out</button>
-            </>
-          )}
-          <Links>
-            {characters &&
-              characters.map((character, _id) => {
-                const url = `/character/${character.tag}`;
-                return (
-                  <li key={_id}>
-                    <Link href='/character/[id]' as={url} passHref>
-                      <ImageWrapper>
-                        <Image
-                          src={character.icon}
-                          width={133}
-                          height={79}
-                          priority
-                        />
-                      </ImageWrapper>
-                    </Link>
-                  </li>
-                );
-              })}
-          </Links>
-          <h2>Build and share combos!</h2>
+          </WelcomeMessage>
+          <p>Build and share combos!</p>
           <Combos character={randomCharacter} combos={combos} />
         </MaxWidthWrapper>
       </Layout>
@@ -72,34 +40,8 @@ export default function Home({ characters, combos }) {
   );
 }
 
-const Links = styled.ul`
-  display: flex;
-  row-gap: 6px;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, default;
-  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, auto;
-`;
-
-const ImageWrapper = styled.a`
-  position: relative;
-  display: block;
-  aspect-ratio: 133 / 79;
-  cursor: inherit;
-  overflow: visible;
-  will-change: transform, filter;
-  transition: all 400ms ease;
-  transition-property: transform, filter;
-
-  &:hover {
-    transform: translate(-2px, -2px) translateZ(0);
-    filter: brightness(1.1);
-    will-change: transform, filter;
-    transition: all 100ms ease;
-    transition-property: transform, filter;
-  }
+const WelcomeMessage = styled.h2`
+  font-size: ${32 / 16}rem;
 `;
 
 export async function getStaticProps() {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, ATTACKS } from '../../constants';
+import { COLORS, ATTACKS } from '@/constants';
 
 import InputLabel from '../InputLabel';
 

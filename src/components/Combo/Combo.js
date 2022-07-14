@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
-import { COLORS } from '../../constants';
+import { COLORS } from '@/constants';
 import { Edit } from 'react-feather';
 
 import ComboStep from '../ComboStep';
+import Image from 'next/image';
 
 const Combo = (props) => {
   const steps = props.notation.map((step, idx) => {
-    return <ComboStep key={idx} inputs={step} />;
+    return (
+      <ComboStepWrapper>
+        <ComboStep key={idx} inputs={step} />
+        {idx !== props.notation.length - 1 && (<Image src='/images/misc/arcade_arrow_keep.png' width={36} height={36} layout='fixed' />)}
+      </ComboStepWrapper>
+    );
   });
 
   const tagUrl = `https://twitter.com/search?q=%23DBFZ_${props.character}&src=typed_query`;
@@ -39,6 +45,17 @@ const Combo = (props) => {
 };
 
 const Wrapper = styled.div``;
+
+const ComboStepWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  {ComboStep} {
+    margin-right: -4px;
+  }
+`;
+
 const Content = styled.div`
   border: 4px solid black;
   background-color: white;
@@ -70,7 +87,7 @@ const Notes = styled.div`
   color: black;
   padding: 0.5em 1em;
   margin: 1em;
-  margin-top: 4px;
+  margin-top: -4px;
   border: 4px solid black;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -79,6 +96,10 @@ const Notes = styled.div`
   justify-content: space-between;
   font-size: ${16 / 16}rem;
   font-weight: 500;
+
+  @media (min-width: 768px) {
+    margin-top: 4px;
+  }
 `;
 
 const AddStep = styled.button`
@@ -113,15 +134,15 @@ const StepsWrapper = styled.ul`
   align-items: center;
   grid-gap: 8px;
   /* margin-top: 10px; */
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   background-color: ${COLORS.white};
-  box-shadow: -8px 8px 0px 0px black;
-  padding: 2em 3em;
+  padding: 1em 1.5em;
   border: 4px solid black;
 
   @media (min-width: 768px) {
-    flex-wrap: wrap;
-    flex-direction: row;
+    padding: 2em 3em;
+    box-shadow: -8px 8px 0px 0px black;
   }
 `;
 

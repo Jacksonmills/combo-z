@@ -21,7 +21,6 @@ const ComboStep = ({ inputs, sparking }) => {
           <Image src='/images/effect/sparking_active.png' layout='fill' />
         ) : null}
       </Wrapper>
-      <Image src='/images/misc/arcade_arrow_keep.png' width={36} height={36} layout='fixed' />
     </>
   );
 };
@@ -29,13 +28,13 @@ const ComboStep = ({ inputs, sparking }) => {
 const Wrapper = styled.li`
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   width: fit-content;
   justify-content: center;
   background: var(--background-color);
   background: linear-gradient(
-    0deg,
+    90deg,
     var(--background-color) 0%,
     ${(props) =>
     props.sparking ? 'var(--background-color)' : 'hsl(0, 0%, 100%)'}
@@ -51,19 +50,6 @@ const Wrapper = styled.li`
 
   &:focus-within {
     background: var(--active-color);
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    flex: 0 0 56px;
-    background: linear-gradient(
-      -90deg,
-      var(--background-color) 0%,
-      ${(props) =>
-    props.sparking ? 'var(--background-color)' : 'hsl(0, 0%, 100%)'}
-        100%
-    );
-    ${(props) => (props.sparking ? 'box-shadow: 0 0 0 2px #ff0037;' : null)}
   }
 `;
 
