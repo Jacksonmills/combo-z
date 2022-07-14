@@ -17,7 +17,7 @@ const Footer = () => {
         </Link>
       </Links>
       <Link href='/'>
-        <Logo>ComboZ</Logo>
+        <Logo><span>Combo</span>Z</Logo>
       </Link>
       <Tooltip
         content={disclaimerContent}
@@ -41,15 +41,11 @@ const Wrapper = styled.footer`
   background: black;
   display: flex;
   row-gap: 16px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 16px 24px;
   z-index: 99;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
 `;
 
 const Logo = styled.a`
@@ -63,6 +59,14 @@ const Logo = styled.a`
 
   &:hover {
     filter: brightness(1.2);
+  }
+
+  span {
+    font-family: 'Sayian Sans';
+    display: none;
+    @media (min-width: 768px) {
+      display: inline-block;
+    }
   }
 `;
 

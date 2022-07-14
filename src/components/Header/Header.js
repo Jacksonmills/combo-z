@@ -7,7 +7,7 @@ const Header = ({ characters }) => {
   return (
     <Wrapper>
       <Link href='/'>
-        <Logo>ComboZ</Logo>
+        <Logo><span>Combo</span>Z</Logo>
       </Link>
       <CharacterSelect characters={characters} />
     </Wrapper>
@@ -32,6 +32,14 @@ const Logo = styled.a`
   color: black;
   margin-right: auto;
   cursor: pointer;
+
+  span {
+    font-family: 'Sayian Sans';
+    display: none;
+    @media (min-width: 768px) {
+      display: inline-block;
+    }
+  }
 `;
 
 export default Header;
