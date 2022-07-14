@@ -63,13 +63,28 @@ const ImageWrapper = styled.div`
   }
 `;
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+export async function getStaticPaths() {
+  const { db } = await connectToDatabase();
+
+  const charactersData = await db.collection('characters').find({}).toArray();
+  const characters = JSON.parse(JSON.stringify(charactersData));
+
+  const paths = characters.map((character) => ({
+    params: { id: character.tag }
+  }));
+
+  return {
+    paths,
+    fallback: false
+  };
+}
+
+export async function getStaticProps({ params }) {
   const { db } = await connectToDatabase();
 
   const charactersData = await db.collection('characters').find({}).toArray();
   const characterData = await db.collection('characters').findOne(
-    { tag: id },
+    { tag: params.id },
     {
       projection: {
         _id: 1,
@@ -82,7 +97,7 @@ export async function getServerSideProps(context) {
   );
   const combosData = await db
     .collection('combos')
-    .find({ character: id })
+    .find({ character: params.id })
     .toArray();
 
   const characters = JSON.parse(JSON.stringify(charactersData));

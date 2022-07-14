@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { signIn, signOut, getSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { connectToDatabase } from '@/util/mongodb';
 
 import Header from '@/components/Header';
@@ -10,7 +10,10 @@ import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 
-export default function Home({ characters, combos, session }) {
+export default function Home({ characters, combos }) {
+  const { data: session, status } = useSession();
+  console.log(session);
+  const loggedIn = status === "authenticated";
   const [randomCharacter, setRandomCharacter] = useState('');
 
   useEffect(() => {
@@ -26,17 +29,17 @@ export default function Home({ characters, combos, session }) {
         <MaxWidthWrapper>
           <h1>
             Welcome{' '}
-            {session
+            {loggedIn
               ? `${session.user.name}, lets build a combo!`
               : 'to ComboZ'}
           </h1>
-          {!session && (
+          {!loggedIn && (
             <>
               <h2>NOT SIGNED IN</h2>
               <button onClick={() => signIn()}>Sign In</button>
             </>
           )}
-          {session && (
+          {loggedIn && (
             <>
               <h2>Welcome {session.user.email}</h2>
               <button onClick={() => signOut()}>Sign Out</button>
@@ -100,7 +103,7 @@ const ImageWrapper = styled.a`
   }
 `;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
   const characterData = await db.collection('characters').find({}).toArray();
@@ -130,13 +133,10 @@ export async function getServerSideProps(context) {
     };
   });
 
-  const session = await getSession(context);
-
   return {
     props: {
       characters: filteredCharacters,
       combos: filteredCombos,
-      session,
     },
   };
 }
