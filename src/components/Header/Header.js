@@ -13,12 +13,35 @@ const Header = ({ characters }) => {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
 
+  const fakeCharacterData = {
+    character: 'Android 16',
+    tag: 'A16',
+    icon: 'http://dustloop.com/wiki/images/thumb/6/6e/DBFZ_Android_16_Icon.png/98px-DBFZ_Android_16_Icon.png',
+    render: 'http://dustloop.com/wiki/images/thumb/a/a6/DBFZ_Android_16_Portrait.png/352px-DBFZ_Android_16_Portrait.png'
+  };
+
+
+  async function handleSubmit() {
+    const response = await
+      fetch("/api/characters", {
+        method: "POST",
+        body: JSON.stringify(fakeCharacterData),
+        headers:
+        {
+          "Content-Type": "application/json",
+        },
+      });
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <Wrapper>
       <Link href='/'>
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
+        <Button onClick={handleSubmit}>Add Character</Button>
         <CharacterSelect characters={characters} />
         {!loggedIn && (
           <UserAuth>

@@ -22,11 +22,8 @@ const Characters = ({ character, characters, combos }) => {
             <ImageWrapper>
               <Image src={character.render} layout='fill' priority />
             </ImageWrapper>
-            <VisuallyHidden>
-              <h1>{character.character}</h1>
-            </VisuallyHidden>
           </Wrapper>
-          <h2>Combos</h2>
+          {combos.length > 0 && (<Heading>{character.character} Combos</Heading>)}
           <Combos character={id} combos={combos} />
         </MaxWidthWrapper>
       </Layout>
@@ -35,6 +32,11 @@ const Characters = ({ character, characters, combos }) => {
 };
 
 const Wrapper = styled.div``;
+
+const Heading = styled.h1`
+  font-size: ${44 / 16}rem;
+`;
+
 const ImageWrapper = styled.div`
   position: relative;
   display: block;
