@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { signIn, signOut, useSession, getSession } from 'next-auth/client';
+import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 import { connectToDatabase } from '@/util/mongodb';
 import { server } from '@/config';
 

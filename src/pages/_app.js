@@ -1,16 +1,15 @@
-import { Provider } from 'next-auth/client';
-
+import { SessionProvider } from 'next-auth/react';
 import GlobalStyles from '@/components/GlobalStyles';
 import Footer from '@/components/Footer';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
       <GlobalStyles />
       <Footer />
       <div id='character-select'></div>
-    </Provider>
+    </SessionProvider >
   );
 }
 

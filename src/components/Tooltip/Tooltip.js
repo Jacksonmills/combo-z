@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components';
 import Tippy from '@tippyjs/react';
 import { followCursor } from 'tippy.js';
 

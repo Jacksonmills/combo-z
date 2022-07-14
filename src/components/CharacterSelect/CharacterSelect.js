@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Minimize2 } from 'react-feather';

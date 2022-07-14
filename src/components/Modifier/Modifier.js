@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { COLORS } from '../../constants';
 
@@ -45,7 +45,7 @@ const TextWrapper = styled.span`
 
   @media (min-width: 768px) {
     padding: ${(props) =>
-      props.reverse ? '0px 5px 1px 16px' : '0px 16px 1px 5px'};
+    props.reverse ? '0px 5px 1px 16px' : '0px 16px 1px 5px'};
   }
 
   /* default */
