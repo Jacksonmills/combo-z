@@ -12,7 +12,6 @@ import Combos from '@/components/Combos';
 
 export default function Home({ characters, combos }) {
   const { data: session, status } = useSession();
-  console.log(session);
   const loggedIn = status === "authenticated";
   const [randomCharacter, setRandomCharacter] = useState('');
 

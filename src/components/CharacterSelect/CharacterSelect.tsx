@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
@@ -8,18 +8,11 @@ import { Minimize2 } from 'react-feather';
 
 import UnstyledButton from '../UnstyledButton';
 
-const Portal = ({ children }) => {
-  return (<>{children}</>);
-};
-
 const CharacterSelect = ({ characters }) => {
   const [showCharacters, setShowCharacters] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const style = useSpring({
-    position: 'absolute',
-    top: '4px',
-    right: '4px',
+  const styles = useSpring({
     willChange: 'transform',
     transform: isHovered ? `scale(1.1)` : `scale(1)`,
     config: {
@@ -33,15 +26,15 @@ const CharacterSelect = ({ characters }) => {
       <CharacterPortal>
         <Wrapper>
           <Modal>
-            <animated.div
-              style={style}
+            <AnimatedDiv
+              style={styles}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               <CloseButton onClick={() => setShowCharacters((state) => !state)}>
                 <Minimize2 />
               </CloseButton>
-            </animated.div>
+            </AnimatedDiv>
             <Links>
               {characters &&
                 characters.map((character, _id) => {
@@ -79,7 +72,7 @@ const CharacterSelect = ({ characters }) => {
       <UnstyledButton onClick={() => setShowCharacters((state) => !state)}>
         Character Select
       </UnstyledButton>
-      {showCharacters && <Characters showCharacters={showCharacters} />}
+      {showCharacters && <Characters />}
     </>
   );
 };
@@ -114,10 +107,17 @@ const Wrapper = styled.div`
 
 const Modal = styled.div`
   position: relative;
-  padding: 1em;
+  padding: 2em 4em 2em 40px;
   background-color: hsl(0, 0%, 100%);
-  min-width: 800px;
+  min-width: 60vw;
+  max-width: 90vw;
   border-radius: 4px;
+`;
+
+const AnimatedDiv = styled(animated.div)`
+  position: absolute;
+  top: 4px;
+  right: 4px;
 `;
 
 const CloseButton = styled(UnstyledButton)`
