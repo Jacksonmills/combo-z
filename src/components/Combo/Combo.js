@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { COLORS } from '../../constants';
+import { COLORS } from '@/constants';
 import { Edit } from 'react-feather';
 
 import ComboStep from '../ComboStep';

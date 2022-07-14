@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { Minimize2 } from 'react-feather';
 
 import UnstyledButton from '../UnstyledButton';
+import Button from '../Button';
+import { COLORS } from '@/constants';
 
 const CharacterSelect = ({ characters }: { characters: any; }) => {
   const [showCharacters, setShowCharacters] = useState(false);
@@ -70,9 +72,9 @@ const CharacterSelect = ({ characters }: { characters: any; }) => {
 
   return (
     <>
-      <UnstyledButton onClick={() => setShowCharacters((state) => !state)}>
+      <Button onClick={() => setShowCharacters((state) => !state)}>
         Character Select
-      </UnstyledButton>
+      </Button>
       {showCharacters && <Characters />}
     </>
   );
@@ -108,7 +110,7 @@ const Wrapper = styled.div`
 
 const Modal = styled.div`
   position: relative;
-  padding: 2em 4em 2em 40px;
+  padding: 80px 40px;
   background-color: hsl(0, 0%, 100%);
   min-width: 60vw;
   max-width: 90vw;
