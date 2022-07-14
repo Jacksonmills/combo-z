@@ -36,7 +36,7 @@ export default function Home({ characters, combos }) {
           {!loggedIn && (
             <>
               <h2>NOT SIGNED IN</h2>
-              <button onClick={() => signIn()}>Sign In</button>
+              <button onClick={() => signIn('twitter')}>Sign In with Twitter</button>
             </>
           )}
           {loggedIn && (
