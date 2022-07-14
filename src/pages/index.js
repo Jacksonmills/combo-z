@@ -12,18 +12,18 @@ import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 
 export default function Home({ characters, combos, session }) {
-  console.log('session: ', session);
   const [randomCharacter, setRandomCharacter] = useState('');
 
   useEffect(() => {
     setRandomCharacter(
-      characters[Math.floor(Math.random() * characters.length)].tag
+      // characters[Math.floor(Math.random() * characters.length)].tag
     );
   }, []);
 
   return (
     <>
-      <Header characters={characters} />
+      TEST
+      {/* <Header characters={characters} />
       <Layout>
         <MaxWidthWrapper>
           <h1>
@@ -67,7 +67,7 @@ export default function Home({ characters, combos, session }) {
           <h2>Build and share combos!</h2>
           <Combos character={randomCharacter} combos={combos} />
         </MaxWidthWrapper>
-      </Layout>
+      </Layout> */}
     </>
   );
 }
@@ -102,43 +102,43 @@ const ImageWrapper = styled.a`
   }
 `;
 
-export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
+// export async function getServerSideProps(context) {
+//   const { db } = await connectToDatabase();
 
-  const characterData = await db.collection('characters').find({}).toArray();
-  const comboData = await db.collection('combos').find({}).limit(20).toArray();
+//   const characterData = await db.collection('characters').find({}).toArray();
+//   const comboData = await db.collection('combos').find({}).limit(20).toArray();
 
-  const characters = JSON.parse(JSON.stringify(characterData));
-  const combos = JSON.parse(JSON.stringify(comboData));
+//   const characters = JSON.parse(JSON.stringify(characterData));
+//   const combos = JSON.parse(JSON.stringify(comboData));
 
-  const filteredCharacters = characters.map((character) => {
-    return {
-      _id: character._id,
-      character: character.character,
-      tag: character.tag,
-      icon: character.icon,
-    };
-  });
-  const filteredCombos = combos.map((combo) => {
-    return {
-      _id: combo._id,
-      character: combo.character,
-      notation: combo.notation,
-      damage: combo.damage,
-      meterGain: combo.meterGain,
-      worksOn: combo.worksOn,
-      difficulty: combo.difficulty,
-      notes: combo.notes,
-    };
-  });
+//   const filteredCharacters = characters.map((character) => {
+//     return {
+//       _id: character._id,
+//       character: character.character,
+//       tag: character.tag,
+//       icon: character.icon,
+//     };
+//   });
+//   const filteredCombos = combos.map((combo) => {
+//     return {
+//       _id: combo._id,
+//       character: combo.character,
+//       notation: combo.notation,
+//       damage: combo.damage,
+//       meterGain: combo.meterGain,
+//       worksOn: combo.worksOn,
+//       difficulty: combo.difficulty,
+//       notes: combo.notes,
+//     };
+//   });
 
-  const session = await getSession(context);
+//   const session = await getSession(context);
 
-  return {
-    props: {
-      characters: filteredCharacters,
-      combos: filteredCombos,
-      session,
-    },
-  };
-}
+//   return {
+//     props: {
+//       characters: filteredCharacters,
+//       combos: filteredCombos,
+//       session,
+//     },
+//   };
+// }

@@ -6,9 +6,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
-      <GlobalStyles />
-      <Footer />
-      <div id='character-select'></div>
+      {/* <GlobalStyles /> */}
+      {/* <Footer /> */}
+      {/* <div id='character-select'></div> */}
     </SessionProvider >
   );
 }
