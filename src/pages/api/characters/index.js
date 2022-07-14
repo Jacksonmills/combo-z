@@ -3,7 +3,11 @@ import { connectToDatabase } from '@/util/mongodb';
 export default async function (req, res) {
   const { db } = await connectToDatabase();
 
-  const data = await db.collection('characters').find({}).toArray();
+  const characters = await db
+    .collection('characters')
+    .find({})
+    .limit(20)
+    .toArray();
 
-  res.json(data);
+  res.json(characters);
 }
