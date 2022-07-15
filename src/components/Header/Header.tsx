@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { Twitter } from 'react-feather';
 import Image from 'next/image';
 
 import { COLORS } from '@/constants';
@@ -14,21 +13,15 @@ import Button from '../Button';
 const Header = ({ characters }: { characters: Character[]; }) => {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
-  const isDev = process && process.env.NODE_ENV === 'development';
+  const isAdmin = session && session.user && session.user.email === 'jacksonemills@gmail.com';
   const userImage = session?.user?.image!;
 
   const charactersData: Character[] = [
     {
-      character: 'Gogeta (SSGSS)',
-      tag: 'GTA',
-      icon: 'https://www.dustloop.com/wiki/images/1/1a/DBFZ_SSB_Gogeta_Icon.png',
-      render: 'https://www.dustloop.com/wiki/images/0/01/DBFZ_SSB_Gogeta_Portrait.png'
-    },
-    {
-      character: 'Roshi',
-      tag: 'RSH',
-      icon: 'https://www.dustloop.com/wiki/images/8/8d/DBFZ_Master_Roshi_Icon.png',
-      render: 'https://www.dustloop.com/wiki/images/5/58/DBFZ_Master_Roshi_Portrait.png'
+      character: '',
+      tag: '',
+      icon: '',
+      render: ''
     }
   ];
 
@@ -53,12 +46,12 @@ const Header = ({ characters }: { characters: Character[]; }) => {
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
-        {isDev && (<Button onClick={handleSubmit}>Add Characters</Button>)}
+        {isAdmin && (<Button tabIndex={0} onClick={handleSubmit}>Add Characters</Button>)}
         <CharacterSelect characters={characters} />
         {!loggedIn && (
-          <UserAuth>
+          <UserAuth tabIndex={0} aria-label='user dropdown, opens dialog' aria-live='polite'>
             <Image src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' width={42} height={42} layout='fixed' />
-            <DropDown>
+            <DropDown >
               <Button onClick={() => signIn('twitter')}>
                 Login with Twitter
               </Button>
@@ -66,9 +59,12 @@ const Header = ({ characters }: { characters: Character[]; }) => {
           </UserAuth>
         )}
         {loggedIn && (
-          <UserAuth>
+          <UserAuth tabIndex={0} aria-label='user dropdown, opens dialog' aria-live='polite'>
             <Image src={userImage} width={42} height={42} layout='fixed' />
             <DropDown>
+              <h2>{session?.user?.name}</h2>
+              <p>{session?.user?.email}</p>
+              <br />
               <Button onClick={() => signOut()}>Sign Out</Button>
             </DropDown>
           </UserAuth>
@@ -91,15 +87,27 @@ const Wrapper = styled.header`
 
 const DropDown = styled.div`
   --background-color: ${COLORS.black};
+  --color: ${COLORS.white};
 
   position: absolute;
   top: 100%;
   right: 8px;
-  display: none;
+  display: block;
   min-width: 300px;
   padding: 1em;
+  color: var(--color);
   background-color: var(--background-color);
   border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: transform 200ms ease, opacity 200ms ease;
+
+  &:focus-within {
+    pointer-events: initial;
+    opacity: 1;
+    transform: translateY(0px);
+  }
 
   &:before {
     content: '';
@@ -109,6 +117,7 @@ const DropDown = styled.div`
     width: 10px;
     height: 10px;
     background-color: var(--background-color);
+    border-radius: 2px;
     transform: rotate(45deg);
   }
 
@@ -132,9 +141,11 @@ const UserAuth = styled.div`
   padding-right: 0;
   
 
-  &:hover {
+  &:hover, &:focus {
     ${DropDown} {
-      display: block;
+      pointer-events: initial;
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 
