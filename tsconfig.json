@@ -117,8 +117,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ,
-    "src/util/mongodb.js"    "src/test_json.js"
+    "src/test_json.js",
+    "src/util/mongodb.js"
   ],
   "exclude": [
     "node_modules"
