@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
+import { _Combo } from '@/util/types';
+
 import { COLORS } from '@/constants';
 import { Edit } from 'react-feather';
 
 import ComboStep from '../ComboStep';
 import Image from 'next/image';
 
-const Combo = (props) => {
+const Combo = (props: _Combo) => {
   const steps = props.notation.map((step, idx) => {
     return (
-      <ComboStepWrapper>
-        <ComboStep key={idx} inputs={step} />
+      <ComboStepWrapper key={idx}>
+        <ComboStep inputs={step} sparking={false} />
         {idx !== props.notation.length - 1 && (<Image src='/images/misc/arcade_arrow_keep.png' width={36} height={36} layout='fixed' />)}
       </ComboStepWrapper>
     );
@@ -21,20 +23,20 @@ const Combo = (props) => {
   return (
     <Wrapper>
       <Content>
-        {/* <Tag href={tagUrl} target='_blank'>
+        <Tag href={tagUrl} target='_blank'>
           #DBFZ_{props.character}
-        </Tag> */}
+        </Tag>
         <Info>
           {props.worksOn && <Location>Works on: {props.worksOn}</Location>}
           <Difficulty>({props.difficulty})</Difficulty>
-          <Dmg>Damage: {props.damage}%</Dmg>
+          <Dmg>{`Damage: ${props.damage}%`}</Dmg>
         </Info>
       </Content>
       <StepsWrapper>
         {steps}
         <AddStep
           type='button'
-          onClick={() => notation.push(<ComboStep>TEST</ComboStep>)}
+          onClick={() => console.log('Adding step')}
         >
           <Edit />
         </AddStep>

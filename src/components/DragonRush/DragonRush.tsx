@@ -3,26 +3,23 @@ import { COLORS, ATTACKS } from '@/constants';
 
 import InputLabel from '../InputLabel';
 
-const SuperDash = () => {
+const DragonRush = () => {
   return (
-    <Wrapper>
+    <Wrapper as='button' tabIndex={0}>
       <Theme
         style={{
-          '--darker-color': '#461a43',
-          '--dark-color': '#88298b',
-          '--light-color': '#ec828a',
+          ['--darker-color' as any]: '#00362f',
+          ['--dark-color' as any]: '#0a6858',
+          ['--light-color' as any]: '#daff61',
         }}
       >
-        <InputLabel>SD</InputLabel>
+        <InputLabel>DR</InputLabel>
       </Theme>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div.attrs((props) => ({
-  type: 'button',
-  tabIndex: '0',
-}))`
+const Wrapper = styled.div`
   display: inline-block;
   padding: 5px;
   width: 46px;
@@ -53,4 +50,4 @@ const Theme = styled.div`
   border-radius: 50px;
 `;
 
-export default SuperDash;
+export default DragonRush;

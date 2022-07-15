@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const FollowUp = () => {
   return (
-    <Wrapper>
+    <Wrapper as='button' tabIndex={0}>
       <Image
         src='/images/misc/follow_up.png'
         width={36}
@@ -15,10 +15,7 @@ const FollowUp = () => {
   );
 };
 
-const Wrapper = styled.div.attrs((props) => ({
-  type: 'button',
-  tabIndex: '0',
-}))`
+const Wrapper = styled.div`
   display: flex;
   padding: 5px;
 `;

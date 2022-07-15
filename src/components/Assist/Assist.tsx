@@ -3,13 +3,13 @@ import { COLORS, ATTACKS } from '@/constants';
 
 import InputLabel from '../InputLabel';
 
-const Assist = ({ assist }) => {
+const Assist = ({ assist }: { assist: number; }) => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#4d1100',
-        '--dark-color': '#f83400',
-        '--light-color': '#f8b211',
+        ['--darker-color' as any]: '#4d1100',
+        ['--dark-color' as any]: '#f83400',
+        ['--light-color' as any]: '#f8b211',
       }}
     >
       <InputLabel>A{assist === 1 ? '1' : '2'}</InputLabel>

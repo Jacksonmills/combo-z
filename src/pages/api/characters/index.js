@@ -15,7 +15,7 @@ export default async function (req, res) {
 
   if (req.method === "POST") {
     const data = req.body;
-    const result = await collection.insertOne(data);
+    const result = await collection.insertMany(data);
     res.status(201).json({ message: "Data inserted successfully!" });
   }
 }

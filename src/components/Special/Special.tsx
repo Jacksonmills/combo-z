@@ -7,9 +7,9 @@ const Special = () => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#460909',
-        '--dark-color': '#c91818',
-        '--light-color': '#f97777',
+        ['--darker-color' as any]: '#460909',
+        ['--dark-color' as any]: '#c91818',
+        ['--light-color' as any]: '#f97777',
       }}
     >
       <InputLabel>S</InputLabel>

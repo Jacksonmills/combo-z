@@ -7,9 +7,9 @@ const Medium = () => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#003115',
-        '--dark-color': '#00642a',
-        '--light-color': '#05fe0b',
+        ['--darker-color' as any]: '#003115',
+        ['--dark-color' as any]: '#00642a',
+        ['--light-color' as any]: '#05fe0b',
       }}
     >
       <InputLabel>M</InputLabel>

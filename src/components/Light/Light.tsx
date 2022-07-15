@@ -7,9 +7,9 @@ const Light = () => {
   return (
     <Wrapper
       style={{
-        '--darker-color': '#0a2544',
-        '--dark-color': '#114075',
-        '--light-color': '#37ffff',
+        ['--darker-color' as any]: '#0a2544',
+        ['--dark-color' as any]: '#114075',
+        ['--light-color' as any]: '#37ffff',
       }}
     >
       <InputLabel>L</InputLabel>

@@ -1931,6 +1931,13 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.5.tgz#1001cc5e6a3704b83c236027e77f2f58ea010f40"
   integrity sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==
 
+"@types/mongodb@^4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-4.0.7.tgz#ebaa80c53b684ea52ccfe7721c0f5c9ef7b4f511"
+  integrity sha512-lPUYPpzA43baXqnd36cZ9xxorprybxXDzteVKCPAdp14ppHtFJHnXYvNpmBvtMUTb5fKXVv6sVbzo1LHkWhJlw==
+  dependencies:
+    mongodb "*"
+
 "@types/next-auth@^3.15.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.15.0.tgz#b602f4689b35fff3d2af09500c79ab11c4745bca"
@@ -7571,7 +7578,7 @@ mongodb-connection-string-url@^2.5.2:
     "@types/whatwg-url" "^8.2.1"
     whatwg-url "^11.0.0"
 
-mongodb@^4.8.0:
+mongodb@*, mongodb@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-4.8.0.tgz#8287c85b43781c042c272d00ff3a143b68698671"
   integrity sha512-a0eVzm1e1kxwnzJV1wZXIS54KegM2y6wXTXOGTSAxr/E2YOUkl/zGBHNSI4z+6z+YQtVdzDqy1nJ4n5MxYJRnQ==
