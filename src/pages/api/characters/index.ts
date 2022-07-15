@@ -1,13 +1,15 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '@/util/mongodb';
+import { Character } from '@/util/types';
 
-export default async function (req, res) {
+export default async function (req: NextApiRequest,
+  res: NextApiResponse<Character[]>) {
   const { db } = await connectToDatabase();
   const collection = db.collection("characters");
 
   if (req.method === "GET") {
     const characters = await collection
       .find({})
-      .limit(20)
       .toArray();
 
     res.json(characters);
@@ -16,6 +18,6 @@ export default async function (req, res) {
   if (req.method === "POST") {
     const data = req.body;
     const result = await collection.insertMany(data);
-    res.status(201).json({ message: "Data inserted successfully!" });
+    res.status(201).json(result);
   }
 }

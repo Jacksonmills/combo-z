@@ -4,7 +4,7 @@ import { _Combo } from '@/util/types';
 
 import Combo from '../Combo';
 
-const Combos = ({ combos }: { combos: _Combo[]; }) => {
+const Combos = ({ randomCharacter, combos }: { randomCharacter?: string; combos: _Combo[]; }) => {
   return (
     <ComboWrapper>
       {combos &&
@@ -24,9 +24,7 @@ const Combos = ({ combos }: { combos: _Combo[]; }) => {
   );
 };
 
-const ComboWrapper = styled.div.attrs((props) => ({
-  tabindex: '1',
-}))`
+const ComboWrapper = styled.div`
   display: grid;
   /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
   grid-gap: 24px;

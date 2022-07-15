@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useSession } from 'next-auth/react';
 import { connectToDatabase } from '@/util/mongodb';
@@ -8,34 +8,55 @@ import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 import VisuallyHidden from '@/components/VisuallyHidden';
+import { Character, _Combo } from '@/util/types';
+import Footer from '@/components/Footer';
 
-export default function Home({ characters, combos }) {
+export default function Home({ characters, combos }: { characters: Character[]; combos: _Combo[]; }) {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
-  const [randomCharacter, setRandomCharacter] = useState('');
 
+  const [randomCharacter, setRandomCharacter] = useState<string>('');
+
+  let isMountedRef = useRef<boolean>(true);
   useEffect(() => {
-    setRandomCharacter(
-      characters[Math.floor(Math.random() * characters.length)].tag
-    );
+    if (!isMountedRef.current) return;
+    const randomTag = characters[Math.floor(Math.random() * characters.length)].tag;
+    isMountedRef.current = true;
+    setRandomCharacter(randomTag);
+    console.log(randomCharacter);
+    return () => { isMountedRef.current = false; };
   }, []);
+
+  async function handleRandomCharacterCombos() {
+    const response = await
+      fetch("/api/combos", {
+        method: "GET",
+        headers:
+        {
+          "Content-Type": "application/json",
+        },
+      });
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <>
-      <Header characters={characters} status={status} session={session} />
+      <Header characters={characters} />
       <Layout>
         <MaxWidthWrapper>
           <VisuallyHidden as="h1">ComboZ</VisuallyHidden>
           <WelcomeMessage>
             Welcome{' '}
             {loggedIn
-              ? `${session.user.name}, lets build a combo!`
+              ? `${session?.user?.name}, lets build a combo!`
               : 'to ComboZ'}
           </WelcomeMessage>
           <p>Build and share combos!</p>
-          <Combos character={randomCharacter} combos={combos} />
+          <Combos combos={combos} />
         </MaxWidthWrapper>
       </Layout>
+      <Footer />
     </>
   );
 }
@@ -53,7 +74,7 @@ export async function getStaticProps() {
   const characters = JSON.parse(JSON.stringify(characterData));
   const combos = JSON.parse(JSON.stringify(comboData));
 
-  const filteredCharacters = characters.map((character) => {
+  const filteredCharacters = characters.map((character: Character) => {
     return {
       _id: character._id,
       character: character.character,
@@ -61,7 +82,7 @@ export async function getStaticProps() {
       icon: character.icon,
     };
   });
-  const filteredCombos = combos.map((combo) => {
+  const filteredCombos = combos.map((combo: _Combo) => {
     return {
       _id: combo._id,
       character: combo.character,
