@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const FollowUp = () => {
   return (
-    <Wrapper as='button' tabIndex={0}>
+    <Wrapper tabIndex={0}>
       <Image
         src='/images/misc/follow_up.png'
         width={36}

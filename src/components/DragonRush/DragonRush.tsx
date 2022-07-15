@@ -5,7 +5,7 @@ import InputLabel from '../InputLabel';
 
 const DragonRush = () => {
   return (
-    <Wrapper as='button' tabIndex={0}>
+    <Wrapper tabIndex={0}>
       <Theme
         style={{
           ['--darker-color' as any]: '#00362f',
