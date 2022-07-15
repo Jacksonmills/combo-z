@@ -5,12 +5,12 @@ import InputLabel from '../InputLabel';
 
 const DragonRush = () => {
   return (
-    <Wrapper>
+    <Wrapper tabIndex={0}>
       <Theme
         style={{
-          '--darker-color': '#00362f',
-          '--dark-color': '#0a6858',
-          '--light-color': '#daff61',
+          ['--darker-color' as any]: '#00362f',
+          ['--dark-color' as any]: '#0a6858',
+          ['--light-color' as any]: '#daff61',
         }}
       >
         <InputLabel>DR</InputLabel>
@@ -19,10 +19,7 @@ const DragonRush = () => {
   );
 };
 
-const Wrapper = styled.div.attrs((props) => ({
-  type: 'button',
-  tabIndex: '0',
-}))`
+const Wrapper = styled.div`
   display: inline-block;
   padding: 5px;
   width: 46px;

@@ -7,7 +7,7 @@ import Modifier from '../Modifier';
 // import Loop from '../Loop';
 // import MultiHit from '../MultiHit';
 
-const Input = ({ input }) => {
+const Input = ({ input }: { input: string | number; }) => {
   function handleInputs() {
     if (
       input === 'L' ||
@@ -19,7 +19,7 @@ const Input = ({ input }) => {
     ) {
       return <Attack button={input} />;
     } else if (input > 0) {
-      return <Dpad direction={input} />;
+      return <Dpad direction={input as number} />;
     } else if (
       input === 'j.' ||
       input === 'sj.' ||
@@ -29,7 +29,7 @@ const Input = ({ input }) => {
       input === 'delay' ||
       input === 'land'
     ) {
-      return <Modifier>{input}</Modifier>;
+      return <Modifier reverse={false}>{input}</Modifier>;
     }
     // TODO: Loop( 'xN' ) and MultiHit( '(N)' )
     else if (input === '~') {

@@ -2,15 +2,12 @@ import styled from 'styled-components';
 
 import Image from 'next/image';
 
-const FollowUp = () => {
+const Attack = ({ button }: { button: string; }) => {
+  const src = `/images/button/${button}.png`;
+
   return (
     <Wrapper>
-      <Image
-        src='/images/misc/follow_up.png'
-        width={36}
-        height={26}
-        layout='fixed'
-      />
+      <Image src={src} width={36} height={36} layout='fixed' />
     </Wrapper>
   );
 };
@@ -21,6 +18,7 @@ const Wrapper = styled.div.attrs((props) => ({
 }))`
   display: flex;
   padding: 5px;
+  z-index: 2;
 `;
 
-export default FollowUp;
+export default Attack;

@@ -6,12 +6,46 @@ import Image from 'next/image';
 
 import { COLORS } from '@/constants';
 
+import { Character } from '@/util/types';
+
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
 
-const Header = ({ characters }) => {
+const Header = ({ characters }: { characters: Character[]; }) => {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
+  const isDev = process && process.env.NODE_ENV === 'development';
+  const userImage = session?.user?.image!;
+
+  const charactersData: Character[] = [
+    {
+      character: 'Gogeta (SSGSS)',
+      tag: 'GTA',
+      icon: 'https://www.dustloop.com/wiki/images/1/1a/DBFZ_SSB_Gogeta_Icon.png',
+      render: 'https://www.dustloop.com/wiki/images/0/01/DBFZ_SSB_Gogeta_Portrait.png'
+    },
+    {
+      character: 'Roshi',
+      tag: 'RSH',
+      icon: 'https://www.dustloop.com/wiki/images/8/8d/DBFZ_Master_Roshi_Icon.png',
+      render: 'https://www.dustloop.com/wiki/images/5/58/DBFZ_Master_Roshi_Portrait.png'
+    }
+  ];
+
+
+  async function handleSubmit() {
+    const response = await
+      fetch("/api/characters", {
+        method: "POST",
+        body: JSON.stringify(charactersData),
+        headers:
+        {
+          "Content-Type": "application/json",
+        },
+      });
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <Wrapper>
@@ -19,6 +53,7 @@ const Header = ({ characters }) => {
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
+        {isDev && (<Button onClick={handleSubmit}>Add Characters</Button>)}
         <CharacterSelect characters={characters} />
         {!loggedIn && (
           <UserAuth>
@@ -32,7 +67,7 @@ const Header = ({ characters }) => {
         )}
         {loggedIn && (
           <UserAuth>
-            <Image src={session.user.image} width={42} height={42} layout='fixed' />
+            <Image src={userImage} width={42} height={42} layout='fixed' />
             <DropDown>
               <Button onClick={() => signOut()}>Sign Out</Button>
             </DropDown>

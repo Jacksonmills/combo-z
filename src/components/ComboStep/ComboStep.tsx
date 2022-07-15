@@ -4,14 +4,14 @@ import Image from 'next/image';
 
 import Input from '../Input';
 
-const ComboStep = ({ inputs, sparking }) => {
+const ComboStep = ({ inputs, sparking }: { inputs: (string | number)[]; sparking: boolean; }) => {
   return (
     <>
       <Wrapper
         sparking={sparking}
         style={{
-          '--background-color': `${sparking ? '#ff9dad' : 'hsl(0, 0%, 80%)'}`,
-          '--active-color': '#ffd86c',
+          ['--background-color' as any]: `${sparking ? '#ff9dad' : 'hsl(0, 0%, 80%)'}`,
+          ['--active-color' as any]: '#ffd86c',
         }}
       >
         {inputs.map((input, idx) => {
@@ -25,7 +25,7 @@ const ComboStep = ({ inputs, sparking }) => {
   );
 };
 
-const Wrapper = styled.li`
+const Wrapper = styled.li<{ sparking: boolean; }>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -40,7 +40,6 @@ const Wrapper = styled.li`
     props.sparking ? 'var(--background-color)' : 'hsl(0, 0%, 100%)'}
       100%
   );
-  ${(props) => (props.sparking ? 'box-shadow: 0 0 0 2px #ff0037;' : null)}
   border-radius: 4px;
   padding: 4px 8px;
 

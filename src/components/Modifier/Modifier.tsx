@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 import { COLORS } from '@/constants';
+import React from 'react';
 
-const Modifier = ({ children, reverse }) => {
+const Modifier = ({ children, reverse }: { children: React.ReactNode; reverse: boolean; }) => {
   return (
     <Wrapper reverse={reverse}>
       <TextWrapper reverse={reverse}>
@@ -12,7 +13,7 @@ const Modifier = ({ children, reverse }) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ reverse: boolean; }>`
   display: inline-block;
   padding: 0 5px;
   z-index: 1;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   margin-left: ${(props) => (props.reverse ? '-24px' : '5px')};
 `;
 
-const TextWrapper = styled.span`
+const TextWrapper = styled.span<{ reverse: boolean; }>`
   display: flex;
   align-items: center;
   justify-content: center;

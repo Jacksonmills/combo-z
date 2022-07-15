@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { COLORS } from '@/constants';
 
-const Loop = ({ repeat }) => {
+const Loop = ({ repeat }: { repeat: number; }) => {
   return (
     <Wrapper>
       <TextWrapper>
-        <Text>({repeat})</Text>
+        <Text>({`${repeat}`})</Text>
       </TextWrapper>
     </Wrapper>
   );

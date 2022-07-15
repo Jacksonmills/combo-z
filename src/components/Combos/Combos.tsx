@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
+import { _Combo } from '@/util/types';
+
 import Combo from '../Combo';
 
-const Combos = ({ combos }) => {
+const Combos = ({ combos }: { combos: _Combo[]; }) => {
   return (
     <ComboWrapper>
       {combos &&
-        combos.map((combo, _id) => (
+        combos.map((combo) => (
           <Combo
-            key={_id}
+            key={`${combo._id}`}
             character={combo.character}
             notation={combo.notation}
             damage={combo.damage}

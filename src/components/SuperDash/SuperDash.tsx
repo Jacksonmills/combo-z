@@ -8,9 +8,9 @@ const SuperDash = () => {
     <Wrapper>
       <Theme
         style={{
-          '--darker-color': '#461a43',
-          '--dark-color': '#88298b',
-          '--light-color': '#ec828a',
+          ['--darker-color' as any]: '#461a43',
+          ['--dark-color' as any]: '#88298b',
+          ['--light-color' as any]: '#ec828a',
         }}
       >
         <InputLabel>SD</InputLabel>
