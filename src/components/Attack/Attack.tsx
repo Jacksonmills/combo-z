@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Image from 'next/image';
 
-const Attack = ({ button }) => {
+const Attack = ({ button }: { button: string; }) => {
   const src = `/images/button/${button}.png`;
 
   return (
