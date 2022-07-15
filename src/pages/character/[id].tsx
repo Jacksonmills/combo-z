@@ -7,9 +7,19 @@ import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
-import VisuallyHidden from '@/components/VisuallyHidden';
+import { Character, _Combo } from '@/util/types';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-const Characters = ({ character, characters, combos }) => {
+const Characters = (
+  {
+    character,
+    characters,
+    combos
+  }: {
+    character: Character;
+    characters: Character[],
+    combos: _Combo[];
+  }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,13 +28,13 @@ const Characters = ({ character, characters, combos }) => {
       <Header characters={characters} />
       <Layout>
         <MaxWidthWrapper>
-          <Wrapper key={character._id}>
+          <Wrapper>
             <ImageWrapper>
               <Image src={character.render} layout='fill' priority />
             </ImageWrapper>
           </Wrapper>
           {combos.length > 0 && (<Heading>{character.character} Combos</Heading>)}
-          <Combos character={id} combos={combos} />
+          <Combos combos={combos} />
         </MaxWidthWrapper>
       </Layout>
     </>
@@ -65,11 +75,11 @@ const ImageWrapper = styled.div`
   }
 `;
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const { db } = await connectToDatabase();
 
   const charactersData = await db.collection('characters').find({}).toArray();
-  const characters = JSON.parse(JSON.stringify(charactersData));
+  const characters: Character[] = JSON.parse(JSON.stringify(charactersData));
 
   const paths = characters.map((character) => ({
     params: { id: character.tag }
@@ -79,14 +89,14 @@ export async function getStaticPaths() {
     paths,
     fallback: false
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { db } = await connectToDatabase();
 
   const charactersData = await db.collection('characters').find({}).toArray();
   const characterData = await db.collection('characters').findOne(
-    { tag: params.id },
+    { tag: params?.id },
     {
       projection: {
         _id: 1,
@@ -99,7 +109,7 @@ export async function getStaticProps({ params }) {
   );
   const combosData = await db
     .collection('combos')
-    .find({ character: params.id })
+    .find({ character: params?.id })
     .toArray();
 
   const characters = JSON.parse(JSON.stringify(charactersData));
@@ -113,6 +123,6 @@ export async function getStaticProps({ params }) {
       combos,
     },
   };
-}
+};
 
 export default Characters;

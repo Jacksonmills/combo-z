@@ -8,6 +8,7 @@ export interface Character {
 
 export interface _Combo {
   _id?: Id;
+  uid?: Id;
   character: string;
   notation: (string | number)[][];
   damage: Damage;
