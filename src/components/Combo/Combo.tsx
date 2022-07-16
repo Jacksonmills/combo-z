@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { _Combo } from '@/types';
 
 import { COLORS } from '@/constants';
-import { Edit } from 'react-feather';
+import { Play, Edit, Twitter } from 'react-feather';
 
 import ComboStep from '../ComboStep';
 import Image from 'next/image';
@@ -20,18 +20,24 @@ const Combo = (props: _Combo) => {
 
   const tagUrl = `https://twitter.com/search?q=%23DBFZ_${props.character}&src=typed_query`;
 
+  const handlePlayCombo = () => {
+    console.log('Playing Combo...');
+  };
+
   return (
     <Wrapper>
-      <Content>
-        <Tag href={tagUrl} target='_blank'>
-          #DBFZ_{props.character}
-        </Tag>
-        <Info>
-          {props.worksOn && <Location>Works on: {props.worksOn}</Location>}
-          <Difficulty>({props.difficulty})</Difficulty>
-          <Dmg>{`Damage: ${props.damage}%`}</Dmg>
-        </Info>
-      </Content>
+      <Controls>
+        <Social>
+          <ControlButton as='a' href={tagUrl} target='_blank'>
+            <Twitter />
+          </ControlButton>
+        </Social>
+        <ComboMenu>
+          <ControlButton onClick={handlePlayCombo}>
+            <Play />
+          </ControlButton>
+        </ComboMenu>
+      </Controls>
       <StepsWrapper>
         {steps}
         <AddStep
@@ -41,7 +47,14 @@ const Combo = (props: _Combo) => {
           <Edit />
         </AddStep>
       </StepsWrapper>
-      <Notes>{props.notes}</Notes>
+      <Information>
+        <Info>
+          {props.worksOn && <Location>Works on: {props.worksOn}</Location>}
+          <Difficulty>({props.difficulty})</Difficulty>
+          <Dmg>{`Damage: ${props.damage}%`}</Dmg>
+        </Info>
+        {props.notes}
+      </Information>
     </Wrapper>
   );
 };
@@ -58,16 +71,24 @@ const ComboStepWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
   border: 4px solid black;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   padding: 0.5em 1em;
   margin: 1em;
   margin-bottom: -4px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 `;
+
+const Social = styled.div``;
+const ComboMenu = styled.div``;
 
 const Info = styled.div`
   display: flex;
@@ -77,23 +98,38 @@ const Info = styled.div`
   font-weight: 500;
 `;
 
-const Tag = styled.a``;
+const ControlButton = styled.button`
+  display: inline-flex;
+  color: white;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+  background-color: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${COLORS.gray[900]};
+  }
+`;
 
 const Location = styled.span``;
 
 const Dmg = styled.span``;
 
 const Difficulty = styled.span``;
-const Notes = styled.div`
+const Information = styled.div`
   background-color: white;
   color: black;
   padding: 0.5em 1em;
   margin: 1em;
   margin-top: -4px;
   border: 4px solid black;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  /* border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px; */
   display: flex;
+  flex-direction: column;
   gap: 8px;
   justify-content: space-between;
   font-size: ${16 / 16}rem;
