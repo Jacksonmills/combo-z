@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
@@ -9,10 +9,48 @@ import { Minimize2 } from 'react-feather';
 import UnstyledButton from '../UnstyledButton';
 import Button from '../Button';
 import { COLORS } from '@/constants';
+import { useSession } from 'next-auth/react';
 
-const CharacterSelect = ({ characters }: { characters: any; }) => {
-  const [showCharacters, setShowCharacters] = useState(false);
+const AddCharacter = () => {
+  const { data: session, status } = useSession();
   const [isHovered, setIsHovered] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const [character, setCharacter] = useState('');
+  const [tag, setTag] = useState('');
+  const [icon, setIcon] = useState('');
+  const [render, setRender] = useState('');
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    const target = event.target as typeof event.target & {
+      characterValue: { value: string; };
+      tagValue: { value: string; };
+      iconValue: { value: string; };
+      renderValue: { value: string; };
+    };
+    // const uid = session?.user; // TODO: use current
+    const characterValue = character;
+    const tagValue = tag;
+    const iconValue = icon;
+    const renderValue = render;
+
+    const response = await
+      fetch("/api/characters", {
+        method: "POST",
+        body: JSON.stringify({ character: characterValue, tag: tagValue, icon: iconValue, render: renderValue }),
+        headers:
+        {
+          "Content-Type": "application/json",
+        },
+      });
+    const data = await response.json();
+    console.log(data);
+    setCharacter('');
+    setTag('');
+    setIcon('');
+    setRender('');
+  }
 
   const styles = useSpring({
     willChange: 'transform',
@@ -23,10 +61,11 @@ const CharacterSelect = ({ characters }: { characters: any; }) => {
     },
   });
 
-  const Characters = () => {
-    const modalDiv: HTMLElement = document.getElementById('character-add')!;
+  const AddCharacterModal = () => {
+    const modalDiv: HTMLElement = document.getElementById('modal')!;
+
     return createPortal(
-      <CharacterPortal>
+      <AddCharacterPortal>
         <Wrapper>
           <Modal>
             <AnimatedDiv
@@ -34,61 +73,77 @@ const CharacterSelect = ({ characters }: { characters: any; }) => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <CloseButton onClick={() => setShowCharacters((state) => !state)}>
+              <CloseButton onClick={() => setShowModal((state) => !state)}>
                 <Minimize2 />
               </CloseButton>
             </AnimatedDiv>
-            <Links>
-              {characters &&
-                characters.map((character: any, _id: string) => {
-                  return (
-                    <li key={_id}>
-                      <Link
-                        href='/character/[id]'
-                        as={`/character/${character.tag}`}
-                        passHref
-                      >
-                        <ImageWrapper
-                          onClick={() => setShowCharacters((state) => !state)}
-                        >
-                          <Image
-                            src={character.icon}
-                            width={133}
-                            height={79}
-                            priority
-                          />
-                        </ImageWrapper>
-                      </Link>
-                    </li>
-                  );
-                })}
-            </Links>
+            <AddCharacterForm onSubmit={handleSubmit}>
+              <AddCharacterLabel>
+                Character Name:
+                <AddCharacterInput
+                  onChange={(e) => setCharacter(e.target.value)}
+                  type="text"
+                  name="character"
+                  value={character}
+                  placeholder="Character name e.g. Goku Black"
+                  required
+                />
+              </AddCharacterLabel>
+              <AddCharacterLabel>
+                Tag:
+                <AddCharacterInput
+                  onChange={(e) => setTag(e.target.value)}
+                  type="text"
+                  name="tag"
+                  value={tag}
+                  placeholder="Character tag e.g. BLK"
+                  required
+                />
+              </AddCharacterLabel>
+              <AddCharacterLabel>
+                Icon:
+                <AddCharacterInput
+                  onChange={(e) => setIcon(e.target.value)}
+                  type="text"
+                  name="icon"
+                  value={icon}
+                  placeholder="Icon asset e.g. http://www.dustloop.com/wiki/images/a/a3/DBFZ_Goku_Black_Icon.png"
+                  required
+                />
+              </AddCharacterLabel>
+              <AddCharacterLabel>
+                Render:
+                <AddCharacterInput
+                  onChange={(e) => setRender(e.target.value)}
+                  type="text"
+                  name="render"
+                  id="render"
+                  value={render}
+                  placeholder="Character render asset e.g. http://www.dustloop.com/wiki/images/d/df/DBFZ_Goku_Black_Portrait.png"
+                  required
+                />
+              </AddCharacterLabel>
+              <br />
+              <Button type='submit'>Add</Button>
+            </AddCharacterForm>
           </Modal>
         </Wrapper>
-      </CharacterPortal>,
+      </AddCharacterPortal>,
       modalDiv
     );
   };
 
   return (
     <>
-      <Button onClick={() => setShowCharacters((state) => !state)}>
-        Character Select
+      <Button onClick={() => setShowModal((state) => !state)}>
+        Add Character
       </Button>
-      {showCharacters && <Characters />}
+      {showModal && <AddCharacterModal />}
     </>
   );
 };
 
-const Links = styled.ul`
-  display: flex;
-  row-gap: 6px;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CharacterPortal = styled.div`
+const AddCharacterPortal = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
@@ -97,15 +152,34 @@ const CharacterPortal = styled.div`
   background-color: hsla(0, 0%, 0%, 0.60);
 `;
 
+const AddCharacterForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const AddCharacterInput = styled.input`
+  border: 4px solid ${COLORS.primary};
+  border-radius: 4px;
+  padding: 1em;
+
+  &:focus-within {
+    border-color: ${COLORS.secondary};
+    outline-color: ${COLORS.secondary};
+  }
+`;
+
+const AddCharacterLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
 const Wrapper = styled.div`
   display: grid;
   place-content: center;
   height: 100%;
   width: 100%;
-
-  cursor: default;
-  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, default;
-  cursor: url(/images/misc/dragon_ball_cursor.png) 32 64, auto;
 `;
 
 const Modal = styled.div`
@@ -129,23 +203,4 @@ const CloseButton = styled(UnstyledButton)`
   cursor: pointer;
 `;
 
-const ImageWrapper = styled.a`
-  position: relative;
-  display: block;
-  aspect-ratio: 133 / 79;
-  cursor: inherit;
-  overflow: visible;
-  will-change: transform, filter;
-  transition: all 400ms ease;
-  transition-property: transform, filter;
-
-  &:hover {
-    transform: translate(-2px, -2px) translateZ(0);
-    filter: brightness(1.1);
-    will-change: transform, filter;
-    transition: all 100ms ease;
-    transition-property: transform, filter;
-  }
-`;
-
-export default CharacterSelect;
+export default AddCharacter;

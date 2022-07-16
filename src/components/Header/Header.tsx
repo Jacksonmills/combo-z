@@ -10,6 +10,8 @@ import { ComboZCharacter } from '@/types';
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
 import { isDev } from '@/config';
+import { FormEvent, useState } from 'react';
+import AddCharacter from '../AddCharacter';
 
 const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
   const { data: session, status } = useSession();
@@ -17,37 +19,15 @@ const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
   const dev = isDev;
   const userImage = session?.user?.image!;
 
-  const charactersData: ComboZCharacter[] = [
-    {
-      character: '',
-      tag: '',
-      icon: '',
-      render: ''
-    }
-  ];
-
-
-  async function handleSubmit() {
-    const response = await
-      fetch("/api/characters", {
-        method: "POST",
-        body: JSON.stringify(charactersData),
-        headers:
-        {
-          "Content-Type": "application/json",
-        },
-      });
-    const data = await response.json();
-    console.log(data);
-  }
-
   return (
     <Wrapper>
       <Link href='/'>
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
-        {dev && (<Button tabIndex={0} onClick={handleSubmit}>Add Characters</Button>)}
+        {dev && (
+          <AddCharacter />
+        )}
         <CharacterSelect characters={characters} />
         {!loggedIn && (
           <UserAuth tabIndex={0} aria-label='user dropdown, opens dialog' aria-live='polite'>

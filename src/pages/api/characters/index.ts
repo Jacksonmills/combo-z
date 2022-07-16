@@ -1,29 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '@/lib/mongodb';
-import { Character } from '@/types';
+import { ResponseFuncs } from '@/types';
 
-export default async function (req: NextApiRequest,
-  res: NextApiResponse<Character[]>) {
-  try {
-    const client = new clientPromise;
-    const db = await client.db('comboz');
-    const collection = db.collection("characters");
+const handler = async (req: NextApiRequest,
+  res: NextApiResponse) => {
+  const client = await clientPromise;
+  const db = await client.db('comboz');
+  const collection = db.collection("characters");
 
-    if (req.method === "GET") {
+  const method: keyof ResponseFuncs = req.method as keyof ResponseFuncs;
+  const catcher = (error: Error) => res.status(400).json({ error });
+
+  const handleCase: ResponseFuncs = {
+    GET: async (req: NextApiRequest, res: NextApiResponse) => {
       const characters = await collection
         .find({})
-        .toArray();
+        .toArray()
+        .catch(catcher);
 
       res.json(characters);
-    }
-
-    if (req.method === "POST") {
+    },
+    POST: async (req: NextApiRequest, res: NextApiResponse) => {
       const data = req.body;
-      const result = await collection.insertMany(data);
-      res.status(201).json(result);
-    }
-  } catch (err) {
-    console.error(err);
-    res.status;
+      const result = await collection.insertOne(data).catch(catcher);
+      res.json(result);
+    },
+  };
+
+  const response = handleCase[method];
+  if (response) {
+    response(req, res);
+  } else {
+    res.status(400).json({ error: "No Response for This Request" });
   }
-}
+};
+
+export default handler;

@@ -24,7 +24,7 @@ const CharacterSelect = ({ characters }: { characters: any; }) => {
   });
 
   const Characters = () => {
-    const modalDiv: HTMLElement = document.getElementById('character-select')!;
+    const modalDiv: HTMLElement = document.getElementById('modal')!;
     return createPortal(
       <CharacterPortal>
         <Wrapper>

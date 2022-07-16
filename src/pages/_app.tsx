@@ -7,9 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
       <GlobalStyles />
-      <div id='character-select'></div>
-      <div id='character-add'></div>
-      <div id='combo-add'></div>
+      <div id='modal'></div>
     </SessionProvider >
   );
 }
