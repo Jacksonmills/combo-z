@@ -3,9 +3,9 @@ import { ComboZCombo } from '@/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function (req: NextApiRequest,
-  res: NextApiResponse<ComboZCombo[]>) {
+  res: NextApiResponse) {
   try {
-    const client = new clientPromise;
+    const client = await clientPromise;
     const db = await client.db('comboz');
     const collection = db.collection("combos");
 
@@ -36,8 +36,8 @@ export default async function (req: NextApiRequest,
 }
 
 export const getCombosByTag = async (tag: string, limit: number,
-  res: NextApiResponse<ComboZCombo[]>) => {
-  const client = new clientPromise;
+  res: NextApiResponse) => {
+  const client = await clientPromise;
   const db = await client.db('comboz');
   const collection = db.collection("combos");
 
