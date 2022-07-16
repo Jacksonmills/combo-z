@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { _Combo } from '@/types';
+import { ComboZCombo } from '@/types';
 
 import { COLORS } from '@/constants';
 import { Play, Edit, Twitter } from 'react-feather';
@@ -8,7 +8,7 @@ import { Play, Edit, Twitter } from 'react-feather';
 import ComboStep from '../ComboStep';
 import Image from 'next/image';
 
-const Combo = (props: _Combo) => {
+const Combo = (props: ComboZCombo) => {
   const steps = props.notation.map((step, idx) => {
     return (
       <ComboStepWrapper key={idx}>

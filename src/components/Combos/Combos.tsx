@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { _Combo } from '@/types';
+import { ComboZCombo } from '@/types';
 
 import Combo from '../Combo';
 
-const Combos = ({ randomCharacter, combos }: { randomCharacter?: string; combos: _Combo[]; }) => {
+const Combos = ({ randomCharacter, combos }: { randomCharacter?: string; combos: ComboZCombo[]; }) => {
   return (
     <ComboWrapper>
       {combos &&

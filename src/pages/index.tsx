@@ -8,10 +8,10 @@ import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 import VisuallyHidden from '@/components/VisuallyHidden';
-import { Character, _Combo } from '@/types';
+import { ComboZCharacter, ComboZCombo } from '@/types';
 import Footer from '@/components/Footer';
 
-export default function Home({ characters, combos }: { characters: Character[]; combos: _Combo[]; }) {
+export default function Home({ characters, combos }: { characters: ComboZCharacter[]; combos: ComboZCombo[]; }) {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
 
@@ -76,7 +76,7 @@ export async function getStaticProps() {
     const characters = JSON.parse(JSON.stringify(characterData));
     const combos = JSON.parse(JSON.stringify(comboData));
 
-    const filteredCharacters = characters.map((character: Character) => {
+    const filteredCharacters = characters.map((character: ComboZCharacter) => {
       return {
         _id: character._id,
         character: character.character,
@@ -84,7 +84,7 @@ export async function getStaticProps() {
         icon: character.icon,
       };
     });
-    const filteredCombos = combos.map((combo: _Combo) => {
+    const filteredCombos = combos.map((combo: ComboZCombo) => {
       return {
         _id: combo._id,
         character: combo.character,

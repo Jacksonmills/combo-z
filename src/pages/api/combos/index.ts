@@ -1,9 +1,9 @@
 import clientPromise from '@/lib/mongodb';
-import { _Combo } from '@/types';
+import { ComboZCombo } from '@/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function (req: NextApiRequest,
-  res: NextApiResponse<_Combo[]>) {
+  res: NextApiResponse<ComboZCombo[]>) {
   try {
     const client = new clientPromise;
     const db = await client.db('comboz');
@@ -36,7 +36,7 @@ export default async function (req: NextApiRequest,
 }
 
 export const getCombosByTag = async (tag: string, limit: number,
-  res: NextApiResponse<_Combo[]>) => {
+  res: NextApiResponse<ComboZCombo[]>) => {
   const client = new clientPromise;
   const db = await client.db('comboz');
   const collection = db.collection("combos");

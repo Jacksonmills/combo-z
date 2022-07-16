@@ -1,4 +1,4 @@
-export interface Character {
+export interface ComboZCharacter {
   _id?: Id;
   character: string;
   tag: string;
@@ -6,7 +6,7 @@ export interface Character {
   render: string;
 }
 
-export interface _Combo {
+export interface ComboZCombo {
   _id?: Id;
   uid?: Id;
   character: string;

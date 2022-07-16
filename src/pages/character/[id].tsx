@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
-import { Character, _Combo } from '@/types';
+import { ComboZCharacter, ComboZCombo } from '@/types';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 const Characters = (
@@ -16,9 +16,9 @@ const Characters = (
     characters,
     combos
   }: {
-    character: Character;
-    characters: Character[];
-    combos: _Combo[];
+    character: ComboZCharacter;
+    characters: ComboZCharacter[];
+    combos: ComboZCombo[];
   }) => {
   const { query } = useRouter();
   const { id } = query;
@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const db = await client.db('comboz');
 
     const charactersData = await db.collection('characters').find({}).toArray();
-    const characters: Character[] = JSON.parse(JSON.stringify(charactersData));
+    const characters: ComboZCharacter[] = JSON.parse(JSON.stringify(charactersData));
 
     const paths = characters.map((character) => ({
       params: { id: character.tag }

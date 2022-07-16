@@ -5,19 +5,19 @@ import Image from 'next/image';
 
 import { COLORS } from '@/constants';
 
-import { Character } from '@/types';
+import { ComboZCharacter } from '@/types';
 
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
 import { isDev } from '@/config';
 
-const Header = ({ characters }: { characters: Character[]; }) => {
+const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
   const dev = isDev;
   const userImage = session?.user?.image!;
 
-  const charactersData: Character[] = [
+  const charactersData: ComboZCharacter[] = [
     {
       character: '',
       tag: '',
