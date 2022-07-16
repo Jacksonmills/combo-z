@@ -17,11 +17,11 @@ const Characters = (
     combos
   }: {
     character: Character;
-    characters: Character[],
+    characters: Character[];
     combos: _Combo[];
   }) => {
-  const router = useRouter();
-  const { id } = router.query;
+  const { query } = useRouter();
+  const { id } = query;
 
   return (
     <>
@@ -120,7 +120,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       characters,
       character,
-      combos,
+      combos
     },
   };
 };
