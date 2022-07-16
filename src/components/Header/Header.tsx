@@ -10,6 +10,7 @@ import { ComboZCharacter } from '@/types';
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
 import { isDev } from '@/config';
+import { FormEvent, useState } from 'react';
 
 const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
   const { data: session, status } = useSession();
@@ -17,21 +18,33 @@ const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
   const dev = isDev;
   const userImage = session?.user?.image!;
 
-  const charactersData: ComboZCharacter[] = [
-    {
-      character: '',
-      tag: '',
-      icon: '',
-      render: ''
+  const [characterToBeAdded, setCharacterToBeAdded] = useState<any>(null);
+
+  function handleChange(event: FormEvent<HTMLInputElement>) {
+    if (characterToBeAdded !== null) {
+      setCharacterToBeAdded([...characterToBeAdded, event.currentTarget.value]);
+      console.log(characterToBeAdded);
     }
-  ];
+  }
 
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    const target = event.target as typeof event.target & {
+      character: { value: string; };
+      tag: { value: string; };
+      icon: { value: string; };
+      render: { value: string; };
+    };
+    const uid = session?.user;
+    const character = target.character.value;
+    const tag = target.tag.value;
+    const icon = target.icon.value;
+    const render = target.render.value;
 
-  async function handleSubmit() {
     const response = await
       fetch("/api/characters", {
         method: "POST",
-        body: JSON.stringify(charactersData),
+        body: JSON.stringify({ uid: uid, character: character, tag: tag, icon: icon, render: render }),
         headers:
         {
           "Content-Type": "application/json",
@@ -47,7 +60,39 @@ const Header = ({ characters }: { characters: ComboZCharacter[]; }) => {
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
-        {dev && (<Button tabIndex={0} onClick={handleSubmit}>Add Characters</Button>)}
+        {dev && (
+          <form onSubmit={handleSubmit}>
+            <input
+              onChange={handleChange}
+              type="text"
+              name="character"
+              placeholder="Character name e.g. Goku Black"
+              required
+            />
+            <input
+              onChange={handleChange}
+              type="text"
+              name="tag"
+              placeholder="Character tag e.g. BLK"
+              required
+            />
+            <input
+              onChange={handleChange}
+              type="text"
+              name="icon"
+              placeholder="Icon asset e.g. http://www.dustloop.com/wiki/images/a/a3/DBFZ_Goku_Black_Icon.png"
+              required
+            />
+            <input
+              onChange={handleChange}
+              type="text"
+              name="render"
+              placeholder="Character render asset e.g. http://www.dustloop.com/wiki/images/d/df/DBFZ_Goku_Black_Portrait.png"
+              required
+            />
+            <Button type='submit'>Add Character</Button>
+          </form>
+        )}
         <CharacterSelect characters={characters} />
         {!loggedIn && (
           <UserAuth tabIndex={0} aria-label='user dropdown, opens dialog' aria-live='polite'>
