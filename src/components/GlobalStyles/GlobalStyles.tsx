@@ -69,7 +69,7 @@ const GlobalStyles = createGlobalStyle`
     font-display: swap;
   }
   /* PORTALS */
-  #character-select {
+  #modal {
     position: relative;
     z-index: 999;
   }
