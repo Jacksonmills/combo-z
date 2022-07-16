@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { connectToDatabase } from '@/util/mongodb';
+import clientPromise from '@/lib/mongodb';
 
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
-import { Character, _Combo } from '@/util/types';
+import { Character, _Combo } from '@/types';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 const Characters = (
@@ -76,53 +76,71 @@ const ImageWrapper = styled.div`
 `;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { db } = await connectToDatabase();
+  try {
+    const client = await clientPromise;
+    const db = await client.db('comboz');
 
-  const charactersData = await db.collection('characters').find({}).toArray();
-  const characters: Character[] = JSON.parse(JSON.stringify(charactersData));
+    const charactersData = await db.collection('characters').find({}).toArray();
+    const characters: Character[] = JSON.parse(JSON.stringify(charactersData));
 
-  const paths = characters.map((character) => ({
-    params: { id: character.tag }
-  }));
+    const paths = characters.map((character) => ({
+      params: { id: character.tag }
+    }));
 
-  return {
-    paths,
-    fallback: false
-  };
+    return {
+      paths,
+      fallback: false
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      paths: [],
+      fallback: false
+    };
+  }
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { db } = await connectToDatabase();
+  try {
+    const client = await clientPromise;
+    const db = await client.db('comboz');
 
-  const charactersData = await db.collection('characters').find({}).toArray();
-  const characterData = await db.collection('characters').findOne(
-    { tag: params?.id },
-    {
-      projection: {
-        _id: 1,
-        character: 1,
-        tag: 1,
-        icon: 1,
-        render: 1,
+    const charactersData = await db.collection('characters').find({}).toArray();
+    const characterData = await db.collection('characters').findOne(
+      { tag: params?.id },
+      {
+        projection: {
+          _id: 1,
+          character: 1,
+          tag: 1,
+          icon: 1,
+          render: 1,
+        },
+      }
+    );
+    const combosData = await db
+      .collection('combos')
+      .find({ character: params?.id })
+      .toArray();
+
+    const characters = JSON.parse(JSON.stringify(charactersData));
+    const character = JSON.parse(JSON.stringify(characterData));
+    const combos = JSON.parse(JSON.stringify(combosData));
+
+    return {
+      props: {
+        isConnected: true,
+        characters,
+        character,
+        combos
       },
-    }
-  );
-  const combosData = await db
-    .collection('combos')
-    .find({ character: params?.id })
-    .toArray();
-
-  const characters = JSON.parse(JSON.stringify(charactersData));
-  const character = JSON.parse(JSON.stringify(characterData));
-  const combos = JSON.parse(JSON.stringify(combosData));
-
-  return {
-    props: {
-      characters,
-      character,
-      combos
-    },
-  };
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      props: { isConnected: false },
+    };
+  }
 };
 
 export default Characters;

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import { COLORS } from '@/constants';
 
-import { Character } from '@/util/types';
+import { Character } from '@/types';
 
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
@@ -63,7 +63,7 @@ const Header = ({ characters }: { characters: Character[]; }) => {
             <Image src={userImage} width={42} height={42} layout='fixed' />
             <DropDown>
               <h2>{session?.user?.name}</h2>
-              <p>{session?.user?.email}</p>
+              {session?.user?.email && (<p>{session.user.email}</p>)}
               <br />
               <Button onClick={() => signOut()}>Sign Out</Button>
             </DropDown>

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next-auth/mongodb-adapter": "^0.0.2-next.298",
     "@tippyjs/react": "^4.2.5",
     "mongodb": "^4.8.0",
     "next": "12",
