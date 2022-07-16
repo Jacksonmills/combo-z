@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { _Combo } from '@/util/types';
+import { _Combo } from '@/types';
 
 import Combo from '../Combo';
 
