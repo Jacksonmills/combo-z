@@ -9,6 +9,7 @@ import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Combos from '@/components/Combos';
 import { ComboZCharacter, ComboZCombo } from '@/types';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Footer from '@/components/Footer';
 
 const Characters = (
   {
@@ -27,51 +28,38 @@ const Characters = (
     <>
       <Header characters={characters} />
       <Layout>
+        <ImageWrapper>
+          <Image src={character.render} layout='fill' priority />
+        </ImageWrapper>
         <MaxWidthWrapper>
-          <Wrapper>
-            <ImageWrapper>
-              <Image src={character.render} layout='fill' priority />
-            </ImageWrapper>
-          </Wrapper>
           {combos.length > 0 && (<Heading>{character.character} Combos</Heading>)}
           <Combos combos={combos} />
         </MaxWidthWrapper>
       </Layout>
+      <Footer />
     </>
   );
 };
 
-const Wrapper = styled.div``;
-
 const Heading = styled.h1`
+  position: relative;
   font-size: ${44 / 16}rem;
 `;
 
 const ImageWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
-  aspect-ratio: 141 / 84;
-  width: 100%;
-  border-radius: 100px;
-
-  @supports not (aspect-ratio: 141 / 84) {
-    &::before {
-      float: left;
-      padding-top: 100%;
-      content: '';
-    }
-
-    &::after {
-      display: block;
-      content: '';
-      clear: both;
-    }
-  }
+  width: 84px;
+  height: 100%;
+  border-right: 4px solid black;
 
   img {
-    object-fit: none;
-    object-position: top;
-    opacity: 0.5;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    opacity: .6;
   }
 `;
 
