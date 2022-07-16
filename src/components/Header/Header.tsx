@@ -9,11 +9,12 @@ import { Character } from '@/types';
 
 import CharacterSelect from '../CharacterSelect';
 import Button from '../Button';
+import { isDev } from '@/config';
 
 const Header = ({ characters }: { characters: Character[]; }) => {
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated";
-  const isAdmin = session && session.user && session.user.email === 'jacksonemills@gmail.com';
+  const dev = isDev;
   const userImage = session?.user?.image!;
 
   const charactersData: Character[] = [
@@ -46,7 +47,7 @@ const Header = ({ characters }: { characters: Character[]; }) => {
         <Logo><span>Combo</span>Z</Logo>
       </Link>
       <NavControls>
-        {isAdmin && (<Button tabIndex={0} onClick={handleSubmit}>Add Characters</Button>)}
+        {dev && (<Button tabIndex={0} onClick={handleSubmit}>Add Characters</Button>)}
         <CharacterSelect characters={characters} />
         {!loggedIn && (
           <UserAuth tabIndex={0} aria-label='user dropdown, opens dialog' aria-live='polite'>
