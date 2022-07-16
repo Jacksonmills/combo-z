@@ -25,6 +25,7 @@ const Combos = ({ randomCharacter, combos }: { randomCharacter?: string; combos:
 };
 
 const ComboWrapper = styled.div`
+  position: relative;
   display: grid;
   /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
   grid-gap: 24px;
