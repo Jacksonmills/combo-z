@@ -10,7 +10,7 @@ const ComboStep = ({ inputs, sparking }: { inputs: (string | number)[]; sparking
       <Wrapper
         sparking={sparking}
         style={{
-          ['--background-color' as any]: `${sparking ? '#ff9dad' : 'hsl(0, 0%, 80%)'}`,
+          ['--background-color' as any]: `${sparking ? '#ff9dad' : 'hsl(0, 0%, 75%)'}`,
           ['--active-color' as any]: '#ffd86c',
         }}
       >
@@ -36,11 +36,9 @@ const Wrapper = styled.li<{ sparking: boolean; }>`
   background: linear-gradient(
     90deg,
     var(--background-color) 0%,
-    ${(props) =>
-    props.sparking ? 'var(--background-color)' : 'hsl(0, 0%, 100%)'}
-      100%
+    hsl(0, 0%, 100%) 100%
   );
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 4px 8px;
 
   img {

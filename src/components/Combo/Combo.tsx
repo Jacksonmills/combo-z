@@ -3,17 +3,16 @@ import styled from 'styled-components';
 import { ComboZCombo } from '@/types';
 
 import { COLORS } from '@/constants';
-import { Play, Edit, Twitter } from 'react-feather';
+import { Play, Edit, Twitter, ChevronRight } from 'react-feather';
 
 import ComboStep from '../ComboStep';
-import Image from 'next/image';
 
 const Combo = (props: ComboZCombo) => {
   const steps = props.notation.map((step, idx) => {
     return (
       <ComboStepWrapper key={idx}>
         <ComboStep inputs={step} sparking={false} />
-        {idx !== props.notation.length - 1 && (<Image src='/images/misc/arcade_arrow_keep.png' width={36} height={36} layout='fixed' />)}
+        {idx !== props.notation.length - 1 && (<ChevronRight />)}
       </ComboStepWrapper>
     );
   });
@@ -36,16 +35,17 @@ const Combo = (props: ComboZCombo) => {
           <ControlButton onClick={handlePlayCombo}>
             <Play />
           </ControlButton>
+
+          <ControlButton
+            type='button'
+            onClick={() => console.log('Adding step')}
+          >
+            <Edit />
+          </ControlButton>
         </ComboMenu>
       </Controls>
       <StepsWrapper>
         {steps}
-        <AddStep
-          type='button'
-          onClick={() => console.log('Adding step')}
-        >
-          <Edit />
-        </AddStep>
       </StepsWrapper>
       <Information>
         <Info>
@@ -65,10 +65,6 @@ const ComboStepWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  {ComboStep} {
-    margin-right: -4px;
-  }
 `;
 
 const Controls = styled.div`
@@ -87,8 +83,16 @@ const Controls = styled.div`
   border-top-right-radius: 8px;
 `;
 
-const Social = styled.div``;
-const ComboMenu = styled.div``;
+const Social = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+`;
+const ComboMenu = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+`;
 
 const Info = styled.div`
   display: flex;
@@ -137,33 +141,6 @@ const Information = styled.div`
 
   @media (min-width: 768px) {
     margin-top: 4px;
-  }
-`;
-
-const AddStep = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: ${36 / 16}rem;
-  height: ${36 / 16}rem;
-  align-self: center;
-  background-color: transparent;
-  color: ${COLORS.gray[900]};
-  cursor: pointer;
-  border: none;
-  border-radius: 6px;
-  transition: all 50ms ease;
-  transition-property: background-color, color;
-
-  &:hover {
-    background-color: hsl(0, 0%, 90%);
-    color: ${COLORS.black};
-  }
-
-  svg {
-    width: ${20 / 16}rem;
-    height: auto;
-    stroke: currentColor;
   }
 `;
 

@@ -159,13 +159,14 @@ const AddCharacterForm = styled.form`
 `;
 
 const AddCharacterInput = styled.input`
-  border: 4px solid ${COLORS.primary};
+  background-color: ${COLORS.gray[100]};
+  border: none;
   border-radius: 4px;
   padding: 1em;
 
   &:focus-within {
-    border-color: ${COLORS.secondary};
-    outline-color: ${COLORS.secondary};
+    border-color: black;
+    outline-color: black;
   }
 `;
 
