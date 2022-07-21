@@ -32,10 +32,11 @@
     ],
     "allowJs": true,
     "noEmit": true,
-    "incremental": true,
+    "incremental": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "noUncheckedIndexedAccess": true,
   },
   "include": [
     "next-env.d.ts",
