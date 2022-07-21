@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Jacksonmills/combo-z/compare/v1.1.0...v1.2.0) (2022-07-21)
+
+
+### Features
+
+* :tada: Backend for adding and getting character data done ([c071da0](https://github.com/Jacksonmills/combo-z/commit/c071da04bac925007f006f3dcb6d1d4a90da3875))
+
 ## [1.1.0](https://github.com/Jacksonmills/combo-z/compare/v1.0.0...v1.1.0) (2022-07-16)
 
 
